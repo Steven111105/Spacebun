@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    Vector2 movement;
     [SerializeField]
     float speed;
-    Vector2 movement;
+    [SerializeField]
+    float defaultSpeed;
+    [SerializeField]
+    float dashSpeed;
     [SerializeField]
     float dashLength;
     [SerializeField]
@@ -55,16 +59,16 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = movement * speed;
+        rb.velocity = movement.normalized * speed;
         if(helping){
             helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
         }
     }
     IEnumerator DashRoutine(){
         canDash = false;
-        speed = 15;
+        speed = dashSpeed;
         yield return new WaitForSeconds(dashLength);
-        speed = 5;
+        speed = defaultSpeed;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
 
@@ -73,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashRoutine());
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("enter");
         if(other.gameObject.CompareTag("NPC")){
@@ -81,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             helpTarget = other.gameObject;
         }
     }
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("exit");
         if(other.gameObject.CompareTag("NPC")){

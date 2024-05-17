@@ -41,6 +41,9 @@ public class NPC : MonoBehaviour
     }
 
     IEnumerator DestroyNPC(){
+        transform.parent.GetComponent<PlayerMovement>().helping = false;
+        transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
+        transform.parent = null;
         rb.velocity = direction * speed;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
@@ -66,8 +69,6 @@ public class NPC : MonoBehaviour
             endTrigger = other.gameObject.GetComponent<ZebraCross>().endTrigger;
             hasEnd = true;
         }else if(gettingHelp && other.gameObject.CompareTag("ZebraExit") && (other.gameObject.name == endTrigger.name)){
-            transform.parent.GetComponent<PlayerMovement>().helping = false;
-            transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
             StartCoroutine(DestroyNPC());
         }
         // else if (other.gameObject.CompareTag("ZebraTrigger"))
