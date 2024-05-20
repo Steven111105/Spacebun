@@ -14,7 +14,7 @@ public class NPCSpawner : MonoBehaviour
         //Zebra Cross that can be chosen
         public GameObject[] zebraStops;
         //Vector2 direction to the zebra cross
-        public Vector2[] direction;
+        public Vector2[] direction = new Vector2[2];
     }
     [SerializeField]
     SpawnDatas[] spawns;
@@ -42,8 +42,8 @@ public class NPCSpawner : MonoBehaviour
             int randomDirection = UnityEngine.Random.Range(0, spawns[randomSpawn].direction.Length);
             
             GameObject spawnedNPC = Instantiate(npcPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
-            spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 2);
-            spawnedNPC.GetComponent<NPC>().direction = spawns[randomSpawn].direction[randomDirection];
+            spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 3);
+            spawnedNPC.GetComponent<NPC>().direction = spawns[randomSpawn].direction[randomDirection].normalized;
         }
     }
 }

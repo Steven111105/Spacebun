@@ -9,6 +9,7 @@ TagManager:
   - ZebraStop
   - NPC
   - ZebraExit
+  - CometTurn
   layers:
   - Default
   - TransparentFX

@@ -60,8 +60,6 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision");
-        Debug.Log("");
         if (other.gameObject.CompareTag("ZebraStop") && !hasEnd)
         {
             rb.velocity = Vector2.zero;

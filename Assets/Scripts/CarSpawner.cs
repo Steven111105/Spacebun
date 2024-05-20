@@ -1,31 +1,35 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField]
-    class SpawnDatas{
+    public GameObject carPrefab;
+    [Serializable]
+    public class SpawnDatas{
         public GameObject spawnPoint;
-        public Vector2[] direction;
+        public Vector2 direction;
     }
     [SerializeField]
-    SpawnDatas[] spawns;
+    public SpawnDatas[] spawns;
     
     private void OnEnable()
     {   
-        int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);
-        int randomDirection = UnityEngine.Random.Range(0, spawns[randomSpawn].direction.Length);
         
-        GameObject spawnedCar = Instantiate(spawns[randomSpawn].spawnPoint, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
-        spawnedCar.GetComponent<Car>().carType = UnityEngine.Random.Range(0, 2);
-        spawnedCar.GetComponent<Car>().direction = spawns[randomSpawn].direction[randomDirection];
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Q)){
+            int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);
+            Debug.Log("Spawned Car at spawn" + randomSpawn + " with direction " + spawns[randomSpawn].direction);
+            GameObject spawnedCar = Instantiate(carPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.Euler(0,0,Mathf.Atan2(spawns[randomSpawn].direction.y, spawns[randomSpawn].direction.x)*Mathf.Rad2Deg - 90f));
+            spawnedCar.GetComponent<Car>().carType = UnityEngine.Random.Range(0, 2);
+            Debug.Log("Car Type: " + spawnedCar.GetComponent<Car>().carType);
+            spawnedCar.GetComponent<Car>().SetCar();
+            spawnedCar.GetComponent<Car>().direction = spawns[randomSpawn].direction.normalized;
+
+        }
     }
 }
