@@ -15,20 +15,24 @@ public class NPC : MonoBehaviour
     bool hasEnd = false;
     private void OnEnable()
     {
-        if (npcType == 0)
-        {
-            speed = 3;
-            canDash = false;
-        }
-        else if (npcType == 1)
-        {
-            speed = 5;
-            canDash = true;
-        }
         gettingHelp = false;
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void SetNPC(){
+        if (npcType == 0)
+        {
+            speed = 1.5f;
+            canDash = false;
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else if (npcType == 1)
+        {
+            speed = 3;
+            canDash = true;
+            GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,10 +48,24 @@ public class NPC : MonoBehaviour
     IEnumerator DestroyNPC(){
         transform.parent.GetComponent<PlayerMovement>().helping = false;
         transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
+        transform.parent.GetComponent<PlayerMovement>().SetDefaultSpeed();
         transform.parent = null;
         rb.velocity = direction * speed;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
+    }
+    public void Hit(){
+        StartCoroutine(HitRoutine());
+    }
+
+    IEnumerator HitRoutine(){
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        for(int i = 0; i<5;i++){
+            sr.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+            sr.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
     // private void OnCollisionEnter2D(Collision2D other)
@@ -61,7 +79,7 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("enter " + other.gameObject.name);
+        // Debug.Log("enter " + other.gameObject.name);
         if (other.gameObject.CompareTag("ZebraStop") && !hasEnd)
         {
             rb.velocity = Vector2.zero;

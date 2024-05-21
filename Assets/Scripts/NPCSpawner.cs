@@ -42,7 +42,8 @@ public class NPCSpawner : MonoBehaviour
             int randomDirection = UnityEngine.Random.Range(0, spawns[randomSpawn].direction.Length);
             
             GameObject spawnedNPC = Instantiate(npcPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
-            spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 3);
+            spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 2);
+            spawnedNPC.GetComponent<NPC>().SetNPC();
             spawnedNPC.GetComponent<NPC>().direction = spawns[randomSpawn].direction[randomDirection].normalized;
         }
     }

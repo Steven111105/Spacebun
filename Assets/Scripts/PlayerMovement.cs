@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     float dashLength;
     [SerializeField]
     float dashCooldown;
+    [SerializeField]
     bool canDash = true;
     [SerializeField]
     public bool helping;
@@ -50,11 +52,13 @@ public class PlayerMovement : MonoBehaviour
                 helping = true;
                 helpTarget.transform.parent = transform;
                 helpTarget.GetComponent<NPC>().gettingHelp = true;
+                speed = helpTarget.GetComponent<NPC>().speed;
             }else{
                 helping = false;
                 helpTarget.GetComponent<NPC>().gettingHelp = false;
                 helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 helpTarget.transform.parent = null;
+                speed = defaultSpeed;
             }
         }
     }
@@ -73,8 +77,28 @@ public class PlayerMovement : MonoBehaviour
         speed = defaultSpeed;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-
     }
+    public void SetDefaultSpeed(){
+        speed = defaultSpeed;
+    }
+
+    public void Hit(){
+        StartCoroutine(HitRoutine());
+        if(helping){
+            helpTarget.GetComponent<NPC>().Hit();
+        }
+    }
+
+    IEnumerator HitRoutine(){
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        for(int i = 0; i<5;i++){
+            sr.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+            sr.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
     void Dash(){
         StartCoroutine(DashRoutine());
     }

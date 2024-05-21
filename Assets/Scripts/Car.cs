@@ -12,10 +12,12 @@ public class Car : MonoBehaviour
     bool hasSwitchedDirection;
     Rigidbody2D rb;
     public float cometDelay;
+    bool hasAttacked;
 
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
+        hasAttacked = false;
     }
     public void SetCar(){
         hasSwitchedDirection = true;
@@ -61,10 +63,23 @@ public class Car : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player"||other.gameObject.tag == "NPC"){
-            Debug.Log("Player Hit");
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("NPC"))
+        {
+            if(!hasAttacked){
+                GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
+                if(other.gameObject.CompareTag("Player")){
+                    hasAttacked = true; 
+                    Debug.Log("Player Hit");
+                    GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
+                }else{
+                    hasAttacked = true;
+                    Debug.Log("NPC Hit");
+                    other.gameObject.GetComponent<NPC>().Hit();
+                }
+            }
             // Destroy(gameObject);
-        }else if(other.gameObject.tag == "CometTurn"){
+        }else if(other.gameObject.CompareTag("CometTurn"))
+        {
             if(carType == 1){
                 StartCoroutine(CometTurn(0.37f));
             }
