@@ -25,6 +25,7 @@ public class NPC : MonoBehaviour
             speed = 5;
             canDash = true;
         }
+        gettingHelp = false;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -49,17 +50,18 @@ public class NPC : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("Collision");
-        if (other.gameObject.CompareTag("Destroy"))
-        {
-            Destroy(gameObject);
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     Debug.Log(other.gameObject.name);
+    //     if (other.gameObject.CompareTag("Destroy"))
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("enter " + other.gameObject.name);
         if (other.gameObject.CompareTag("ZebraStop") && !hasEnd)
         {
             rb.velocity = Vector2.zero;
@@ -68,6 +70,9 @@ public class NPC : MonoBehaviour
             hasEnd = true;
         }else if(gettingHelp && other.gameObject.CompareTag("ZebraExit") && (other.gameObject.name == endTrigger.name)){
             StartCoroutine(DestroyNPC());
+        }else if (other.gameObject.CompareTag("Destroy"))
+        {
+            Destroy(gameObject);
         }
         // else if (other.gameObject.CompareTag("ZebraTrigger"))
         // {

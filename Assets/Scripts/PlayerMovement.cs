@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
                 helpTarget.GetComponent<NPC>().gettingHelp = true;
             }else{
                 helping = false;
+                helpTarget.GetComponent<NPC>().gettingHelp = false;
+                helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 helpTarget.transform.parent = null;
             }
         }
@@ -77,17 +79,17 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashRoutine());
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("enter");
-        if(other.gameObject.CompareTag("NPC")){
+        // Debug.Log("Player enter trigger");
+        if(other.gameObject.CompareTag("NPC") && !helping){
             touchingNPC = true;
             helpTarget = other.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("exit");
+        Debug.Log("Player exit trigger");
         if(other.gameObject.CompareTag("NPC")){
             touchingNPC = false;
         }
