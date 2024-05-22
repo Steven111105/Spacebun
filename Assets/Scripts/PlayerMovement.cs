@@ -102,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
     void Dash(){
         StartCoroutine(DashRoutine());
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Player hit something");
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -113,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Player exit trigger");
+        // Debug.Log("Player exit trigger");
         if(other.gameObject.CompareTag("NPC")){
             touchingNPC = false;
         }

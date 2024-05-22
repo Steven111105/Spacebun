@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    UIManager uiManager;
     public int npcType;
     public Vector2 direction;
     public float speed;
@@ -12,11 +15,17 @@ public class NPC : MonoBehaviour
     bool stopping = false;
     public bool gettingHelp = false;
     public GameObject endTrigger;
+    GameObject patienceBar;
+    [SerializeField]
+    int waitingTime = 0;
     bool hasEnd = false;
     private void OnEnable()
     {
+        patienceBar = transform.GetChild(0).gameObject;
         gettingHelp = false;
         rb = GetComponent<Rigidbody2D>();
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        waitingTime = 0;
     }
 
     public void SetNPC(){
@@ -44,15 +53,20 @@ public class NPC : MonoBehaviour
             
         }
     }
+    void MakeVector(Transform origin, Transform Target){
+        direction = (Target.position - origin.position).normalized;
+    }
 
-    IEnumerator DestroyNPC(){
-        transform.parent.GetComponent<PlayerMovement>().helping = false;
-        transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
-        transform.parent.GetComponent<PlayerMovement>().SetDefaultSpeed();
-        transform.parent = null;
+    void DestroyNPC(){
+        if(gettingHelp){
+            transform.parent.GetComponent<PlayerMovement>().helping = false;
+            transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
+            transform.parent.GetComponent<PlayerMovement>().SetDefaultSpeed();
+            transform.parent = null;
+        }
+        uiManager.AddScore(100 + (10-waitingTime)*10);
         rb.velocity = direction * speed;
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        Destroy(gameObject,0.5f);
     }
     public void Hit(){
         StartCoroutine(HitRoutine());
@@ -67,15 +81,23 @@ public class NPC : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-
-    // private void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     Debug.Log(other.gameObject.name);
-    //     if (other.gameObject.CompareTag("Destroy"))
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
+    IEnumerator Waiting(){
+        Debug.Log("Waiting");
+        while(stopping){
+            if(!gettingHelp){
+                patienceBar.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                waitingTime ++;
+                patienceBar.transform.localScale = new Vector3((10-waitingTime)*0.3f, patienceBar.transform.localScale.y, 1);
+                if(waitingTime >= 10){
+                    Debug.Log("Waiting time is over");
+                    stopping = false;
+                    patienceBar.SetActive(false);
+                }
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -85,11 +107,15 @@ public class NPC : MonoBehaviour
             rb.velocity = Vector2.zero;
             stopping = true;
             endTrigger = other.gameObject.GetComponent<ZebraCross>().endTrigger;
+            MakeVector(transform, endTrigger.transform);
             hasEnd = true;
-        }else if(gettingHelp && other.gameObject.CompareTag("ZebraExit") && (other.gameObject.name == endTrigger.name)){
-            StartCoroutine(DestroyNPC());
-        }else if (other.gameObject.CompareTag("Destroy"))
-        {
+            patienceBar.SetActive(true);
+            StartCoroutine(Waiting());
+        }else if(hasEnd && other.gameObject.CompareTag("ZebraExit") && (other.gameObject.name == endTrigger.name)){
+            Debug.Log("Reached Zebra Exit");
+            patienceBar.SetActive(false);
+            DestroyNPC();
+        }else if (other.gameObject.CompareTag("Destroy")){
             Destroy(gameObject);
         }
         // else if (other.gameObject.CompareTag("ZebraTrigger"))
