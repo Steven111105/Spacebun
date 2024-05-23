@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    Animator animator;
     Vector2 movement;
     [SerializeField]
     float speed;
@@ -24,16 +25,22 @@ public class PlayerMovement : MonoBehaviour
     public GameObject helpTarget;
     bool touchingNPC = false;
     // Start is called before the first frame update
-    void Start()
-    {
+    private void OnEnable(){
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        speed = defaultSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Speed",movement.Abs().magnitude);
+        if(movement.x != 0){
+            transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
+        }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -48,22 +55,32 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.E)){
-            if(touchingNPC && !helping){
-                helping = true;
-                helpTarget.transform.parent = transform;
-                helpTarget.GetComponent<NPC>().gettingHelp = true;
-                speed = helpTarget.GetComponent<NPC>().speed;
+            if(helpTarget != null){
+                if(touchingNPC && !helping){
+                    helping = true;
+                    animator.SetBool("Helping", true);
+                    animator.SetInteger("HelpType", helpTarget.GetComponent<NPC>().npcType);
+                    helpTarget.transform.parent = transform;
+                    helpTarget.GetComponent<NPC>().gettingHelp = true;
+                    speed = helpTarget.GetComponent<NPC>().speed;
+                }else{
+                    helping = false;
+                    helpTarget.GetComponent<NPC>().gettingHelp = false;
+                    helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    helpTarget.transform.parent = null;
+                    animator.SetInteger("HelpType", -1);
+                    speed = defaultSpeed;
+                }
             }else{
                 helping = false;
-                helpTarget.GetComponent<NPC>().gettingHelp = false;
-                helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                helpTarget.transform.parent = null;
+                helpTarget = null;
+                animator.SetInteger("HelpType", -1);
                 speed = defaultSpeed;
             }
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.velocity = movement.normalized * speed;
         if(helping){
@@ -71,16 +88,9 @@ public class PlayerMovement : MonoBehaviour
                 helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
             }else{
                 helping = false;
+                animator.SetBool("Helping", false);
             }
         }
-    }
-    IEnumerator DashRoutine(){
-        canDash = false;
-        speed = dashSpeed;
-        yield return new WaitForSeconds(dashLength);
-        speed = defaultSpeed;
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
     }
     public void SetDefaultSpeed(){
         speed = defaultSpeed;
@@ -106,6 +116,15 @@ public class PlayerMovement : MonoBehaviour
     void Dash(){
         StartCoroutine(DashRoutine());
     }
+    IEnumerator DashRoutine(){
+        canDash = false;
+        animator.SetTrigger("Dash");
+        speed = dashSpeed;
+        yield return new WaitForSeconds(dashLength);
+        speed = defaultSpeed;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("Player hit something");
@@ -117,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("NPC") && !helping){
             touchingNPC = true;
             helpTarget = other.gameObject;
+            animator.SetBool("Helping", true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)

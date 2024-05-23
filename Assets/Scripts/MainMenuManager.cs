@@ -8,6 +8,8 @@ public class MainMenuManager : MonoBehaviour
     public Animator mainMenuAnim;
     public TMP_Text highscoreText;
     public TMP_Text carrotsText;
+    public bool unlockedLvl2;
+    public bool unlockedLvl3;
 
     public int[] highscore = new int[3];
 
@@ -22,6 +24,12 @@ public class MainMenuManager : MonoBehaviour
         highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
         highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
+        if(highscore[0] > 100000){
+            unlockedLvl2 = true;
+        }
+        if(highscore[1] > 100000){
+            unlockedLvl3 = true;
+        }
         highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
         carrotsText.text = "Carrots: " + PlayerPrefs.GetInt("Carrots", 0);
     }
@@ -30,7 +38,17 @@ public class MainMenuManager : MonoBehaviour
         mainMenuAnim.SetTrigger("LevelSelect");
     }
     public void Play(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuAnim.GetInteger("Level") + 1);
+        if(unlockedLvl2 && unlockedLvl3)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuAnim.GetInteger("Level") + 1);
+        }else{
+            if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            }else if(mainMenuAnim.GetInteger("Level") == 2 && unlockedLvl3){
+                UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            }
+        }
+        
     }
 
     public void NextLvl(){
