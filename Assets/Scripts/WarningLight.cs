@@ -14,8 +14,10 @@ public class WarningLight : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if(type == 0){
             targetColor = Color.red;
-        }else{
+        }else if(type == 1){
             targetColor = Color.blue;
+        }else{
+            targetColor = Color.green;
         }
         for(int i = 0; i < 5; i++){
             sr.color = targetColor;

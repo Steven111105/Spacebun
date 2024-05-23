@@ -24,10 +24,10 @@ public class MainMenuManager : MonoBehaviour
         highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
         highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
-        if(highscore[0] > 100000){
+        if(highscore[0] > 10000){
             unlockedLvl2 = true;
         }
-        if(highscore[1] > 100000){
+        if(highscore[1] > 10000){
             unlockedLvl3 = true;
         }
         highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
@@ -42,11 +42,14 @@ public class MainMenuManager : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuAnim.GetInteger("Level") + 1);
         }else{
-            if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
+            if(mainMenuAnim.GetInteger("Level") == 0){
                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-            }else if(mainMenuAnim.GetInteger("Level") == 2 && unlockedLvl3){
+            }if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
                 UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            }else if(mainMenuAnim.GetInteger("Level") == 2 && unlockedLvl3){
+                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
             }
+            Debug.Log("lvl not unlocked");
         }
         
     }

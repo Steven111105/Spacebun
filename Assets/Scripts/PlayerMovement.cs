@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Speed",movement.Abs().magnitude);
         if(movement.x != 0){
             transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
@@ -136,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("NPC") && !helping){
             touchingNPC = true;
             helpTarget = other.gameObject;
-            animator.SetBool("Helping", true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)

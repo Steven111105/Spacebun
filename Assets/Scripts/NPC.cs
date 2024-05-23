@@ -67,6 +67,7 @@ public class NPC : MonoBehaviour
         }
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         uiManager.AddScore(100 + (10-waitingTime)*10);
+        uiManager.AddCarrot(10 + (10-waitingTime));
         rb.velocity = direction * speed;
         Destroy(gameObject,0.5f);
     }

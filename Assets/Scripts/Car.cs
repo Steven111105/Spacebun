@@ -11,8 +11,9 @@ public class Car : MonoBehaviour
     public Vector2 direction;
     bool hasSwitchedDirection;
     Rigidbody2D rb;
-    public float cometDelay;
+    public float turnDelay;
     bool hasAttacked;
+
 
     private void OnEnable()
     {
@@ -25,18 +26,26 @@ public class Car : MonoBehaviour
         {
             //meteor
             movespeed = 2;
-            transform.localScale = new Vector3(2.5f, 2.5f, 1f);
+            transform.localScale = new Vector3(3f, 3f, 1f);
         }
         else if(carType == 1)
         {
             //comet
+            movespeed = 15;
+            transform.localScale = new Vector3(1.5f, 4f, 1f);
+            StartCoroutine(UFODelay());
+        }else if(carType == 2){
+            //UFO
             movespeed = 5;
             hasSwitchedDirection = false;
             carSpawner = GameObject.Find("Spawner").GetComponent<CarSpawner>();
-            transform.localScale = new Vector3(1.5f, 3f, 1f);
-        }else if(carType == 2){
-            //idk
+            transform.localScale = new Vector3(2f, 2f, 1f);
         }
+    }
+    IEnumerator UFODelay(){
+        movespeed = 0;
+        yield return new WaitForSeconds(2f);
+        movespeed = 10;
     }
     IEnumerator UFOTurn(float seconds){
         if(!hasSwitchedDirection){
@@ -80,7 +89,7 @@ public class Car : MonoBehaviour
             // Destroy(gameObject);
         }else if(other.gameObject.CompareTag("CometTurn"))
         {
-            if(carType == 1){
+            if(carType == 2){
                 StartCoroutine(UFOTurn(0.37f));
             }
         }
