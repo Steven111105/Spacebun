@@ -38,9 +38,9 @@ public class Car : MonoBehaviour
             //idk
         }
     }
-    IEnumerator CometTurn(float seconds){
+    IEnumerator UFOTurn(float seconds){
         if(!hasSwitchedDirection){
-            Debug.Log("Comet Switched Direction");
+            Debug.Log("UFO Switched Direction");
             hasSwitchedDirection = true;
             int randomSpawn = Random.Range(0, carSpawner.spawns.Length);
             yield return new WaitForSeconds(seconds);
@@ -81,7 +81,7 @@ public class Car : MonoBehaviour
         }else if(other.gameObject.CompareTag("CometTurn"))
         {
             if(carType == 1){
-                StartCoroutine(CometTurn(0.37f));
+                StartCoroutine(UFOTurn(0.37f));
             }
         }
     }

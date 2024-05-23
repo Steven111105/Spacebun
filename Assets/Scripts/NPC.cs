@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    [SerializeField]
     UIManager uiManager;
     public int npcType;
     public Vector2 direction;

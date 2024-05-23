@@ -67,7 +67,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = movement.normalized * speed;
         if(helping){
-            helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
+            if(helpTarget != null){
+                helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
+            }else{
+                helping = false;
+            }
         }
     }
     IEnumerator DashRoutine(){

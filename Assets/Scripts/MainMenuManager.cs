@@ -7,23 +7,52 @@ public class MainMenuManager : MonoBehaviour
 {
     public Animator mainMenuAnim;
     public TMP_Text highscoreText;
+    public TMP_Text carrotsText;
+
     public int[] highscore = new int[3];
 
+    private void OnEnable()
+    {
+        // PlayerPrefs.SetInt("HighScore1", 10);
+        // PlayerPrefs.SetInt("HighScore2", 20);
+        // PlayerPrefs.SetInt("HighScore3", 30);
+        Time.timeScale = 1;
+        PlayerPrefs.SetInt("Carrots", 10);
+        mainMenuAnim.SetInteger("Level", 0);
+        highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
+        highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
+        highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
+        highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+        carrotsText.text = "Carrots: " + PlayerPrefs.GetInt("Carrots", 0);
+    }
+    public void LevelSelect(){
+        Debug.Log("Level Select");
+        mainMenuAnim.SetTrigger("LevelSelect");
+    }
+    public void Play(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuAnim.GetInteger("Level") + 1);
+    }
+
     public void NextLvl(){
-        if(mainMenuAnim.GetInteger("LevelSelect") != 3){
-            mainMenuAnim.SetInteger("LevelSelect", mainMenuAnim.GetInteger("LevelSelect") + 1);;
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("LevelSelect")-1];
+        if(mainMenuAnim.GetInteger("Level") != 2){
+            mainMenuAnim.SetInteger("Level", mainMenuAnim.GetInteger("Level") + 1);;
+            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+        }else{
+            mainMenuAnim.SetInteger("Level", 0);
+            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
         }
     }
     public void PrevLvl(){
-        mainMenuAnim.SetInteger("LevelSelect", mainMenuAnim.GetInteger("LevelSelect") - 1);;
-        if(mainMenuAnim.GetInteger("LevelSelect") != 0){
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("LevelSelect")-1];
+        if(mainMenuAnim.GetInteger("Level") != 0){
+            mainMenuAnim.SetInteger("Level", mainMenuAnim.GetInteger("Level") - 1);;
+            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+        }else{
+            mainMenuAnim.SetInteger("Level", 2);
+            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
         }
     }
     public void Back(){
-        // levelSelect.SetActive(false);
-        mainMenuAnim.SetTrigger("Back");
+        mainMenuAnim.SetTrigger("GoToMenu");
     }
     public void Settings(){
         mainMenuAnim.SetTrigger("Settings");
