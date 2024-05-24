@@ -8,24 +8,29 @@ public class UpgradesManager : MonoBehaviour
     public bool[] unlockedUpgrades = new bool[4];
     private void OnEnable()
     {
+        GameObject canvas = GameObject.Find("Canvas");
         for(int i = 0; i < 4; i++){
             upgradesGO[i].SetActive(false);
         }
-        //upgrade 1 = zebra cross for blind
-        //upgrade 2 = Warning lights
-        //upgrade 3 = speed bump
-        //upgrade 4 = bubble thing
-        for (int i = 0; i < unlockedUpgrades.Length; i++)
-        {
-            unlockedUpgrades[i] = PlayerPrefs.GetInt("Upgrade" + i, 0) == 1;
-            upgradesGO[i].SetActive(unlockedUpgrades[i]);
-        }
-
+        //upgrade 0 = zebra cross for blind
+        //upgrade 1 = Warning lights
+        //upgrade 2 = speed bump
+        //upgrade 3 = bubble thing
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void RefreshUpdates(){
+        for (int i = 0; i < 4; i++)
+        {
+            if(PlayerPrefs.GetInt("Upgrade" + i, 0) == 1){
+                upgradesGO[i].SetActive(true);
+            }
+            if(i == 2){
+                SpeedBumpUpgrade();
+            }
+        }
+    }
+    //TODO speedbump speed reduction
+    void SpeedBumpUpgrade(){
+        return;
     }
 }
