@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
     public GameObject carPrefab;
-    public LightManager warningLights;
+    public UpgradesManager upgradesManager;
     [Serializable]
     public class SpawnDatas{
         public GameObject spawnPoint;
@@ -29,7 +29,9 @@ public class CarSpawner : MonoBehaviour
             int randomType = UnityEngine.Random.Range(0, 3);
             spawnedCar.GetComponent<Car>().carType = randomType;
             // Debug.Log("Car Type: " + spawnedCar.GetComponent<Car>().carType);
-            warningLights.Blink(randomSpawn, randomType);
+            if(upgradesManager.unlockedUpgrades[1]){
+                upgradesManager.upgradesGO[1].transform.GetChild(randomSpawn).GetComponent<WarningLight>().Blink(randomType);
+            }
             spawnedCar.GetComponent<Car>().SetCar();
             spawnedCar.GetComponent<Car>().direction = spawns[randomSpawn].direction.normalized;
 

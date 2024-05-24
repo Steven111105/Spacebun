@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public string[] staticDirections = {"IdleUpRight", "IdleUpLeft", "IdleDownRight", "IdleDownLeft"};
+    public string[] runDirections = {"UpRight", "UpLeft", "DownRight", "DownLeft"};
     Rigidbody2D rb;
     Animator animator;
+    [SerializeField]
     Vector2 movement;
     [SerializeField]
     float speed;
@@ -24,11 +27,15 @@ public class PlayerMovement : MonoBehaviour
     public bool helping;
     public GameObject helpTarget;
     bool touchingNPC = false;
+    Vector3 defaultScale;
+    [SerializeField]
+    Vector2 lastDirection;
     // Start is called before the first frame update
     private void OnEnable(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         speed = defaultSpeed;
+        defaultScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -37,9 +44,72 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Speed",movement.Abs().magnitude);
-        if(movement.x != 0){
-            transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
+        animator.SetFloat("Vertical", movement.y);
+        bool stopped = false;
+
+        if(movement.x > 0 && movement.y > 0){
+            // Debug.Log("UpRight");
+            animator.Play("UpRight");
+        }else if(movement.x < 0 && movement.y > 0){
+            // Debug.Log("UpLeft");
+            animator.Play("UpLeft");
+        }else if(movement.x > 0 && movement.y < 0){
+            // Debug.Log("DownRight");
+            animator.Play("DownRight");
+        }else if(movement.x < 0 && movement.y < 0){
+            // Debug.Log("DownLeft");
+            animator.Play("DownLeft");
+        }else if(movement.Abs().magnitude < 0.1f){
+            stopped = true;
+            if(lastDirection.x > 0 && lastDirection.y > 0){
+                //top right
+                animator.Play("IdleUpRight");
+            }else if(lastDirection.x < 0 && lastDirection.y > 0){
+                //top left
+                animator.Play("IdleUpLeft");
+                // transform.localScale = new Vector3(defaultScale.x, transform.localScale.y, 1);
+            }else if(lastDirection.x > 0 && lastDirection.y < 0){
+                //bottom right
+                animator.Play("IdleDownRight");
+                transform.localScale = new Vector3(-defaultScale.x, transform.localScale.y, 1);
+            }else if(lastDirection.x < 0 && lastDirection.y < 0){
+                //bottom left
+                animator.Play("IdleDownLeft");
+            }else{
+                animator.Play("IdleDownLeft");
+            
+            }
         }
+        if(!stopped){
+            if(movement.x != 0){
+                lastDirection.x = movement.x;
+            }
+            if(movement.y != 0){
+                lastDirection.y = movement.y;
+            }
+            // transform.localScale = new Vector3(defaultScale.x, defaultScale.y, 1);
+        }
+            
+
+        // if(movement.x != 0 && movement.y != 0){
+        //     if(movement.y > 0){
+        //         if(movement.x > 0){
+        //             transform.localScale = new Vector3(movement.x, transform.localScale.y, 1);
+        //         }else if(movement.x < 0){
+        //             transform.localScale = new Vector3(movement.x, transform.localScale.y, 1);
+        //         }else{
+        //             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
+        //         }
+        //     }else if(movement.y < 0){
+        //         if(movement.x > 0){
+        //             transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
+        //         }else if(movement.x < 0){
+        //             transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
+        //         }else{
+        //             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
+        //         }
+        //     }
+        // }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -91,6 +161,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public void SetDirection(){
+        // string
+    }
     public void SetDefaultSpeed(){
         speed = defaultSpeed;
     }
@@ -124,11 +197,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("Player hit something");
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         // Debug.Log("Player enter trigger");

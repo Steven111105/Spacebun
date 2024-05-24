@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPrefab: {fileID: 7960818968720163429, guid: 1dd6f16ae55c75b4c98d98d0d68c2fda, type: 3}
-  warningLights: {fileID: 1382082362}
+  upgradesManager: {fileID: 0}
   spawns:
   - spawnPoint: {fileID: 1666156423}
     direction: {x: 6, y: -3.5}
@@ -2794,9 +2794,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.29142934, g: 0.5566038, b: 0.42278543, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2878,9 +2878,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.29142934, g: 0.5566038, b: 0.42278543, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4377,9 +4377,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.29142934, g: 0.5566038, b: 0.42278543, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4680,7 +4680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1309420133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4693,6 +4693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b2889bf1d14d4489b864e8dfe85c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradesGO:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  unlockedUpgrades: 00000000
 --- !u!4 &1309420134
 Transform:
   m_ObjectHideFlags: 0
@@ -5291,6 +5297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb7bcbf90eb265458b0e75d6d1a0f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {x: 0, y: 0}
   speed: 2
   defaultSpeed: 3
   dashSpeed: 7
@@ -6291,9 +6298,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.29142934, g: 0.5566038, b: 0.42278543, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
