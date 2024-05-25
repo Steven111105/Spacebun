@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public TMP_Text healthText;
+    public GameObject hearts;
     public TMP_Text scoreText;
     public TMP_Text carrotText;
     public GameObject gameOverPanel;
@@ -24,11 +24,11 @@ public class UIManager : MonoBehaviour
         carrots = PlayerPrefs.GetInt("Carrots", 0);
         prevCarrots = carrots;
         currHealth = maxHealth;
-        SetHealth(maxHealth);
+        SetHealth();
         gameOverPanel.SetActive(false);
         score = 0;
         scoreText.text = "Score: " + score;
-        carrotText.text = "Carrots: " + carrots;
+        carrotText.text = carrots.ToString();
     }
     private void Update()
     {
@@ -45,18 +45,19 @@ public class UIManager : MonoBehaviour
     }
     public void AddCarrot(int addedCarrot){
         carrots += addedCarrot;
-        carrotText.text = "Carrots: " + carrots;
+        carrotText.text = carrots.ToString();
         PlayerPrefs.SetInt("Carrots", carrots);
     }
-    public void SetHealth(int targetHealth){
-        healthText.text = "Health: " + targetHealth;
+    public void SetHealth(){
+        for(int i = 0; i < 3; i++){
+            hearts.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     public void MinusHealth()
     {
-        Debug.Log("minus health");
         currHealth--;
-        healthText.text = "Health: " + currHealth;
+        hearts.transform.GetChild(currHealth).gameObject.SetActive(false);
     }
 
     public void BackToMenu(){

@@ -21,6 +21,7 @@ public class UpgradesManager : MonoBehaviour
             if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i, 0) == 1){
                 //change color instead of set active
                 upgradesGO[i].SetActive(true);
+                unlockedUpgrades[i] = true;
             }
         }
     }

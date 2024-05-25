@@ -1231,6 +1231,8 @@ MonoBehaviour:
   mainMenuAnim: {fileID: 429945900}
   highscoreText: {fileID: 216683017}
   carrotsText: {fileID: 2018519065}
+  unlockedLvl2: 0
+  unlockedLvl3: 0
   highscore: 64000000c80000002c010000
 --- !u!1 &503732863
 GameObject:
