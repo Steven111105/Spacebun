@@ -6,12 +6,13 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     CarSpawner carSpawner;
+    public bool hasSpeedBump;
     public int carType;
     public float movespeed;
     public Vector2 direction;
     bool hasSwitchedDirection;
     Rigidbody2D rb;
-    public float turnDelay;
+    public float turnDelay = 0.37f;
     bool hasAttacked;
 
 
@@ -25,18 +26,30 @@ public class Car : MonoBehaviour
         if(carType == 0)
         {
             //meteor
-            movespeed = 2;
+            if(hasSpeedBump){
+                movespeed = 1;
+            }else{
+                movespeed = 2;
+            }
             transform.localScale = new Vector3(3f, 3f, 1f);
         }
         else if(carType == 1)
         {
             //comet
-            movespeed = 15;
+            if(hasSpeedBump){
+                movespeed = 10;
+            }else{
+                movespeed = 15;
+            }
             transform.localScale = new Vector3(1.5f, 4f, 1f);
             StartCoroutine(UFODelay());
         }else if(carType == 2){
             //UFO
-            movespeed = 5;
+            if(hasSpeedBump){
+                movespeed = 3;
+            }else{
+                movespeed = 5;
+            }
             hasSwitchedDirection = false;
             carSpawner = GameObject.Find("Spawner").GetComponent<CarSpawner>();
             transform.localScale = new Vector3(2f, 2f, 1f);
@@ -90,7 +103,7 @@ public class Car : MonoBehaviour
         }else if(other.gameObject.CompareTag("CometTurn"))
         {
             if(carType == 2){
-                StartCoroutine(UFOTurn(0.37f));
+                StartCoroutine(UFOTurn(turnDelay));
             }
         }
     }

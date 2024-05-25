@@ -19,7 +19,6 @@ public class MainMenuManager : MonoBehaviour
         // PlayerPrefs.SetInt("HighScore2", 20);
         // PlayerPrefs.SetInt("HighScore3", 30);
         Time.timeScale = 1;
-        PlayerPrefs.SetInt("Carrots", 10);
         mainMenuAnim.SetInteger("Level", 0);
         highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
@@ -43,11 +42,11 @@ public class MainMenuManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuAnim.GetInteger("Level") + 1);
         }else{
             if(mainMenuAnim.GetInteger("Level") == 0){
-                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(4);
             }if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
-                UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(5);
             }else if(mainMenuAnim.GetInteger("Level") == 2 && unlockedLvl3){
-                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(6);
             }
             Debug.Log("lvl not unlocked");
         }
