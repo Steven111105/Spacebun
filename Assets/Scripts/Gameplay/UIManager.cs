@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -83,6 +84,10 @@ public class UIManager : MonoBehaviour
     public void Replay(){
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Shop(){
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 3);
     }
     public void Exit(){
         Time.timeScale = 1;
