@@ -15,6 +15,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerPrefs.SetInt("Carrots", PlayerPrefs.GetInt("Carrots", 0) + 10);
+        // PlayerPrefs.DeleteAll();
         // PlayerPrefs.SetInt("HighScore1", 10);
         // PlayerPrefs.SetInt("HighScore2", 20);
         // PlayerPrefs.SetInt("HighScore3", 30);

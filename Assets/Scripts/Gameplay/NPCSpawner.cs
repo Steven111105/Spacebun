@@ -16,6 +16,7 @@ public class NPCSpawner : MonoBehaviour
         //Vector2 direction to the zebra cross
         public Vector2[] direction = new Vector2[2];
     }
+
     [SerializeField]
     SpawnDatas[] spawns;
     void OnEnable()
@@ -30,11 +31,14 @@ public class NPCSpawner : MonoBehaviour
                 spawns[i].direction[j] = new Vector2(spawns[i].zebraStops[j].transform.position.x - spawns[i].spawnPoint.transform.position.x, spawns[i].zebraStops[j].transform.position.y - spawns[i].spawnPoint.transform.position.y).normalized;
             }
         }
+        StartCoroutine(SpawnNPC());
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
+
+    IEnumerator SpawnNPC(){
+        while(true){
+            //4*e^(-0.005t) - 0.5
+            yield return new WaitForSeconds(4*MathF.Exp(-0.005f*Time.timeSinceLevelLoad)-0.5f);
+            Debug.Log("Spawning NPC");
             //random location
             int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);
             //random direction from that location (can have multiple per location)
@@ -43,8 +47,9 @@ public class NPCSpawner : MonoBehaviour
             
             GameObject spawnedNPC = Instantiate(npcPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
             spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 2);
-            spawnedNPC.GetComponent<NPC>().SetNPC();
             spawnedNPC.GetComponent<NPC>().direction = spawns[randomSpawn].direction[randomDirection].normalized;
+            spawnedNPC.GetComponent<NPC>().SetNPC();
+
         }
     }
 }

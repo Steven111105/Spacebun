@@ -1,50 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    CarSpawner carSpawner;
+    public AnimatorController[] animatorControllers = new AnimatorController[2];
+    private Animator animator;
+    public CarSpawner carSpawner;
     public bool hasSpeedBump;
     public int carType;
     public float movespeed;
     public Vector2 direction;
     bool hasSwitchedDirection;
     Rigidbody2D rb;
-    public float turnDelay = 0.37f;
+    public float turnDelay;
+    public float turnDelayWithSpeedBump;
     bool hasAttacked;
 
 
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         hasAttacked = false;
     }
     public void SetCar(){
+        carType = 2;
         hasSwitchedDirection = true;
         if(carType == 0)
         {
+            animator.runtimeAnimatorController = animatorControllers[0];
+            animator.Play("Meteor");
+            GetComponent<CircleCollider2D>().enabled = true;
+            GetComponent<CircleCollider2D>().radius = 1.187288f;
             //meteor
             if(hasSpeedBump){
                 movespeed = 1;
             }else{
                 movespeed = 2;
             }
-            transform.localScale = new Vector3(3f, 3f, 1f);
+            // transform.localScale = new Vector3(3f, 3f, 1f);
         }
         else if(carType == 1)
         {
-            //comet
-            if(hasSpeedBump){
-                movespeed = 10;
-            }else{
-                movespeed = 15;
-            }
-            transform.localScale = new Vector3(1.5f, 4f, 1f);
-            StartCoroutine(UFODelay());
+            //star
+            animator.runtimeAnimatorController = animatorControllers[1];
+            Debug.Log(Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
+            transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
+
+            GetComponent<CircleCollider2D>().radius = 0.37f;
+            transform.localScale = new Vector3(1.5f, 1.5f, 1f);
+            StartCoroutine(StarDelay());
         }else if(carType == 2){
             //UFO
+            animator.runtimeAnimatorController = animatorControllers[0];
+            animator.Play("UFO");
+            GetComponent<BoxCollider2D>().enabled = true;
             if(hasSpeedBump){
                 movespeed = 3;
             }else{
@@ -52,13 +65,18 @@ public class Car : MonoBehaviour
             }
             hasSwitchedDirection = false;
             carSpawner = GameObject.Find("Spawner").GetComponent<CarSpawner>();
-            transform.localScale = new Vector3(2f, 2f, 1f);
+            // transform.localScale = new Vector3(2f, 2f, 1f);
         }
     }
-    IEnumerator UFODelay(){
+    IEnumerator StarDelay(){
         movespeed = 0;
         yield return new WaitForSeconds(2f);
-        movespeed = 10;
+        if(hasSpeedBump){
+            movespeed = 10;
+        }else{
+            movespeed = 15;
+        }
+        animator.Play("Star");
     }
     IEnumerator UFOTurn(float seconds){
         if(!hasSwitchedDirection){
@@ -66,23 +84,22 @@ public class Car : MonoBehaviour
             hasSwitchedDirection = true;
             int randomSpawn = Random.Range(0, carSpawner.spawns.Length);
             yield return new WaitForSeconds(seconds);
-            transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(carSpawner.spawns[randomSpawn].direction.y, carSpawner.spawns[randomSpawn].direction.x)*Mathf.Rad2Deg - 90f);
             direction = carSpawner.spawns[randomSpawn].direction.normalized;
         }
     }
 
+    private void Update()
+    {
+        if(carType == 1){
+            Debug.Log("test");
+            transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
+        }
+    }
     private void FixedUpdate()
     {
         rb.velocity = direction * movespeed;    
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Destroy"))
-        {
-            Destroy(gameObject);
-        }
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("NPC"))
@@ -103,8 +120,15 @@ public class Car : MonoBehaviour
         }else if(other.gameObject.CompareTag("CometTurn"))
         {
             if(carType == 2){
-                StartCoroutine(UFOTurn(turnDelay));
+                if(hasSpeedBump){
+                    StartCoroutine(UFOTurn(turnDelayWithSpeedBump));
+                }else{
+                    StartCoroutine(UFOTurn(turnDelay));
+                }
             }
+        }else if (other.gameObject.CompareTag("Destroy"))
+        {
+            Destroy(gameObject);
         }
     }
 }
