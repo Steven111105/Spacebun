@@ -27,7 +27,7 @@ public class ShopUIManager : MonoBehaviour
         for(int i = 0; i < 4; i++){
             upgradesGO[i].SetActive(false);
         }
-        carrotsText.text = "Carrots: " + PlayerPrefs.GetInt("Carrots", 0).ToString();
+        carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
         RefreshUpgrades();
     }
 
@@ -36,7 +36,7 @@ public class ShopUIManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("Carrots", PlayerPrefs.GetInt("Carrots") - 10);
             PlayerPrefs.SetInt("Upgrade" + upgradeLevelIndex + upgrade, 1);
-            carrotsText.text = "Carrots: " + PlayerPrefs.GetInt("Carrots", 0).ToString();
+            carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
             RefreshUpgrades();
         }
     }
@@ -55,5 +55,9 @@ public class ShopUIManager : MonoBehaviour
 
     public void Play(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(upgradeLevelIndex + 1);
+    }
+
+    public void Menu(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

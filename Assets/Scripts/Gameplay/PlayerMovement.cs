@@ -5,13 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public string[] staticDirections = {"IdleUpRight", "IdleUpLeft", "IdleDownRight", "IdleDownLeft"};
-    public string[] runDirections = {"UpRight", "UpLeft", "DownRight", "DownLeft"};
     Rigidbody2D rb;
     Animator animator;
-    [SerializeField]
     Vector2 movement;
-    [SerializeField]
     float speed;
     [SerializeField]
     float defaultSpeed;
@@ -21,11 +17,10 @@ public class PlayerMovement : MonoBehaviour
     float dashLength;
     [SerializeField]
     float dashCooldown;
-    [SerializeField]
     bool canDash = true;
-    [SerializeField]
     public bool helping;
     public GameObject helpTarget;
+    GameObject helpEndTrigger;
     bool touchingNPC = false;
     Vector3 defaultScale;
     [SerializeField]
@@ -87,29 +82,14 @@ public class PlayerMovement : MonoBehaviour
             if(movement.y != 0){
                 lastDirection.y = movement.y;
             }
-            // transform.localScale = new Vector3(defaultScale.x, defaultScale.y, 1);
         }
-            
-
-        // if(movement.x != 0 && movement.y != 0){
-        //     if(movement.y > 0){
-        //         if(movement.x > 0){
-        //             transform.localScale = new Vector3(movement.x, transform.localScale.y, 1);
-        //         }else if(movement.x < 0){
-        //             transform.localScale = new Vector3(movement.x, transform.localScale.y, 1);
-        //         }else{
-        //             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
-        //         }
-        //     }else if(movement.y < 0){
-        //         if(movement.x > 0){
-        //             transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
-        //         }else if(movement.x < 0){
-        //             transform.localScale = new Vector3(-movement.x, transform.localScale.y, 1);
-        //         }else{
-        //             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
-        //         }
-        //     }
-        // }
+        if(helpTarget != null && helping){
+            helpEndTrigger.transform.GetChild(0).gameObject.SetActive(true);
+        }else{
+            if(helpEndTrigger != null){
+                helpEndTrigger.transform.GetChild(0).gameObject.SetActive(false);
+            }
+        }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -127,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             if(helpTarget != null){
                 if(touchingNPC && !helping){
                     helping = true;
+                    helpEndTrigger = helpTarget.GetComponent<NPC>().endTrigger;
                     animator.SetBool("Helping", true);
                     animator.SetInteger("HelpType", helpTarget.GetComponent<NPC>().npcType);
                     helpTarget.transform.parent = transform;

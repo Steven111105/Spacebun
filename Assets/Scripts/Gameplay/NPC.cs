@@ -49,10 +49,6 @@ public class NPC : MonoBehaviour
         if(!stopping){
             rb.velocity = direction * speed;
         }
-        
-        if(stopping){
-            
-        }
     }
     void MakeVector(Transform origin, Transform Target){
         direction = (Target.position - origin.position).normalized;

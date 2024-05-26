@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class WarningLight : MonoBehaviour
 {
+    public Sprite targetSprite;
+    [SerializeField]
+    Sprite defaultSprite;
+
+    private void OnEnable()
+    {
+        GetComponent<SpriteRenderer>().sprite = defaultSprite;
+
+    }
+
     public void Blink(int type){
         StopAllCoroutines();
         StartCoroutine(BlinkRoutine(type));
     }
     
     IEnumerator BlinkRoutine(int type){
-        Color targetColor;
+        targetSprite = transform.GetComponentInParent<LightManager>().sprites[type];
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if(type == 0){
-            targetColor = Color.red;
-        }else if(type == 1){
-            targetColor = Color.blue;
-        }else{
-            targetColor = Color.green;
-        }
         for(int i = 0; i < 5; i++){
-            sr.color = targetColor;
+            sr.sprite = targetSprite;
             yield return new WaitForSeconds(0.2f);
             //change sprite back to default
-            sr.color = Color.white;
+            sr.sprite = defaultSprite;
             yield return new WaitForSeconds(0.2f);
         }
-        sr.color = targetColor;
-        yield return new WaitForSeconds(5f);
-        sr.color = Color.white;
-
+        sr.sprite = targetSprite;
+        yield return new WaitForSeconds(3f);
+        sr.sprite = defaultSprite;
     }
 }

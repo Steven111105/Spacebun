@@ -38,9 +38,8 @@ public class CarSpawner : MonoBehaviour
             
             if(upgradesManager.unlockedUpgrades[1]){
                 //Blink Warning Light
-                upgradesManager.upgradesGO[1].transform.GetChild(randomSpawn).GetComponent<WarningLight>().Blink(randomType);
+                upgradesManager.upgradesGO[1].GetComponent<LightManager>().Blink(randomSpawn, randomType);
             }
-            
             if(upgradesManager.unlockedUpgrades[2]){
                 Debug.Log("Has Speedbump");
                 spawnedCar.GetComponent<Car>().hasSpeedBump = true;

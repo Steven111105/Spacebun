@@ -27,7 +27,6 @@ public class Car : MonoBehaviour
         hasAttacked = false;
     }
     public void SetCar(){
-        carType = 2;
         hasSwitchedDirection = true;
         if(carType == 0)
         {
@@ -88,13 +87,6 @@ public class Car : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(carType == 1){
-            Debug.Log("test");
-            transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
-        }
-    }
     private void FixedUpdate()
     {
         rb.velocity = direction * movespeed;    
