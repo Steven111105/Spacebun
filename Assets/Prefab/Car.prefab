@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3465334597033721872}
   - component: {fileID: 1028117988435800731}
   - component: {fileID: 3558287792255582816}
+  - component: {fileID: 1278249543656719165}
   - component: {fileID: 275785965997785140}
   - component: {fileID: 2607953003279027497}
   - component: {fileID: 5432448182568080754}
-  - component: {fileID: 1278249543656719165}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -110,6 +110,28 @@ MonoBehaviour:
   movespeed: 0
   direction: {x: 0, y: 0}
   turnDelay: 0.37
+  turnDelayWithSpeedBump: 0
+--- !u!95 &1278249543656719165
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960818968720163429}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d21218d45e207744a4be6850a841329, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &275785965997785140
 Rigidbody2D:
   serializedVersion: 4
@@ -217,24 +239,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5201845, y: 0.75164986}
   m_EdgeRadius: 0
---- !u!95 &1278249543656719165
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960818968720163429}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4136a28556686ac4db01116bc641a46f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

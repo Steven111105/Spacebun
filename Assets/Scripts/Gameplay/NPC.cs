@@ -30,9 +30,13 @@ public class NPC : MonoBehaviour
     }
 
     public void SetNPC(){
+        //biasa = speed normal, dash
+        //kecil = speed fast, dash
+        //tua = speed slow, no dash
+        //blind = speed normal, no dash
         if (npcType == 0)
         {
-            speed = 1.5f;
+            speed = 2;
             canDash = false;
             GetComponent<SpriteRenderer>().color = Color.red;
         }
@@ -41,6 +45,16 @@ public class NPC : MonoBehaviour
             speed = 3;
             canDash = true;
             GetComponent<SpriteRenderer>().color = Color.blue;
+        }else if (npcType == 2)
+        {
+            speed = 1;
+            canDash = false;
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }else if (npcType == 3)
+        {
+            speed = 1.5f;
+            canDash = false;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
     // Update is called once per frame
@@ -63,7 +77,7 @@ public class NPC : MonoBehaviour
         }
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         uiManager.AddScore(100 + (10-waitingTime)*10);
-        uiManager.AddCarrot(10 + (10-waitingTime));
+        uiManager.AddCarrot(2 + Random.Range(0, 3));
         rb.velocity = direction * speed;
         Destroy(gameObject,0.5f);
     }
@@ -81,7 +95,7 @@ public class NPC : MonoBehaviour
         }
     }
     IEnumerator Waiting(){
-        Debug.Log("Waiting");
+        // Debug.Log("Waiting");
         while(stopping){
             if(!gettingHelp){
                 patienceBar.SetActive(true);
@@ -89,7 +103,7 @@ public class NPC : MonoBehaviour
                 waitingTime ++;
                 patienceBar.transform.localScale = new Vector3((10-waitingTime)*0.3f, patienceBar.transform.localScale.y, 1);
                 if(waitingTime >= 10){
-                    Debug.Log("Waiting time is over");
+                    // Debug.Log("Waiting time is over");
                     stopping = false;
                     patienceBar.SetActive(false);
                 }
@@ -104,14 +118,17 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("ZebraStop") && !hasEnd)
         {
             rb.velocity = Vector2.zero;
-            stopping = true;
             endTrigger = other.gameObject.GetComponent<ZebraCross>().endTrigger;
             MakeVector(transform, endTrigger.transform);
+            if(other.gameObject.GetComponent<ZebraCross>().blindStop || npcType != 3){
+                stopping = true;
+            }
             hasEnd = true;
             patienceBar.SetActive(true);
+
             StartCoroutine(Waiting());
         }else if(hasEnd && other.gameObject.CompareTag("ZebraExit") && (other.gameObject.name == endTrigger.name)){
-            Debug.Log("Reached Zebra Exit");
+            // Debug.Log("Reached Zebra Exit");
             patienceBar.SetActive(false);
             DestroyNPC();
         }else if (other.gameObject.CompareTag("Destroy")){

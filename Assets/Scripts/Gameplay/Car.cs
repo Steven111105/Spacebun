@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
         {
             //star
             animator.runtimeAnimatorController = animatorControllers[1];
-            Debug.Log(Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
+            // Debug.Log(Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
             transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
 
             GetComponent<CircleCollider2D>().radius = 0.37f;
@@ -79,7 +79,7 @@ public class Car : MonoBehaviour
     }
     IEnumerator UFOTurn(float seconds){
         if(!hasSwitchedDirection){
-            Debug.Log("UFO Switched Direction");
+            // Debug.Log("UFO Switched Direction");
             hasSwitchedDirection = true;
             int randomSpawn = Random.Range(0, carSpawner.spawns.Length);
             yield return new WaitForSeconds(seconds);
@@ -100,11 +100,11 @@ public class Car : MonoBehaviour
                 GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
                 if(other.gameObject.CompareTag("Player")){
                     hasAttacked = true; 
-                    Debug.Log("Player Hit");
+                    // Debug.Log("Player Hit");
                     GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
                 }else{
                     hasAttacked = true;
-                    Debug.Log("NPC Hit");
+                    // Debug.Log("NPC Hit");
                     other.gameObject.GetComponent<NPC>().Hit();
                 }
             }

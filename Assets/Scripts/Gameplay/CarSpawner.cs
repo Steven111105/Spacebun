@@ -36,12 +36,11 @@ public class CarSpawner : MonoBehaviour
             int randomType = UnityEngine.Random.Range(0, 3);
             spawnedCar.GetComponent<Car>().carType = randomType;
             
-            if(upgradesManager.unlockedUpgrades[1]){
+            if(upgradesManager.unlockedUpgrades[1,randomSpawn]){
                 //Blink Warning Light
                 upgradesManager.upgradesGO[1].GetComponent<LightManager>().Blink(randomSpawn, randomType);
             }
-            if(upgradesManager.unlockedUpgrades[2]){
-                Debug.Log("Has Speedbump");
+            if(upgradesManager.unlockedUpgrades[2,randomSpawn]){
                 spawnedCar.GetComponent<Car>().hasSpeedBump = true;
             }
             spawnedCar.GetComponent<Car>().turnDelay = turnDelay;
