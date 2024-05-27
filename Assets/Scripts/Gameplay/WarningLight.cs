@@ -11,7 +11,6 @@ public class WarningLight : MonoBehaviour
     private void OnEnable()
     {
         GetComponent<SpriteRenderer>().sprite = defaultSprite;
-
     }
 
     public void Blink(int type){
@@ -20,6 +19,7 @@ public class WarningLight : MonoBehaviour
     }
     
     IEnumerator BlinkRoutine(int type){
+        Debug.Log("Blinking");
         targetSprite = transform.GetComponentInParent<LightManager>().sprites[type];
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         for(int i = 0; i < 5; i++){

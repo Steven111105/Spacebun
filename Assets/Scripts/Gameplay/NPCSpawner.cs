@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
@@ -38,7 +37,7 @@ public class NPCSpawner : MonoBehaviour
         while(true){
             //4*e^(-0.005t) - 0.5
             yield return new WaitForSeconds(7*MathF.Exp(-0.008f*Time.timeSinceLevelLoad));
-            Debug.Log("Spawning NPC");
+            // Debug.Log("Spawning NPC");
             //random location
             int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);
             //random direction from that location (can have multiple per location)
@@ -46,6 +45,7 @@ public class NPCSpawner : MonoBehaviour
             int randomDirection = UnityEngine.Random.Range(0, spawns[randomSpawn].direction.Length);
             
             GameObject spawnedNPC = Instantiate(npcPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
+            spawnedNPC.transform.position += new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), 0);
             spawnedNPC.GetComponent<NPC>().npcType = UnityEngine.Random.Range(0, 4);
             spawnedNPC.GetComponent<NPC>().direction = spawns[randomSpawn].direction[randomDirection].normalized;
             spawnedNPC.GetComponent<NPC>().SetNPC();

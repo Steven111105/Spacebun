@@ -49,7 +49,7 @@ public class Car : MonoBehaviour
             // Debug.Log(Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
             transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
 
-            GetComponent<CircleCollider2D>().radius = 0.37f;
+            GetComponent<CircleCollider2D>().radius = 0.24f;
             transform.localScale = new Vector3(1.5f, 1.5f, 1f);
             StartCoroutine(StarDelay());
         }else if(carType == 2){
@@ -71,9 +71,9 @@ public class Car : MonoBehaviour
         movespeed = 0;
         yield return new WaitForSeconds(2f);
         if(hasSpeedBump){
-            movespeed = 10;
+            movespeed = 7;
         }else{
-            movespeed = 15;
+            movespeed = 12;
         }
         animator.Play("Star");
     }
