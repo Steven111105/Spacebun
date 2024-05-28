@@ -22,6 +22,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject helpTarget;
     GameObject helpEndTrigger;
     bool touchingNPC = false;
+    string directionString; //for anim
+    //biasa = speed normal, dash
+    //kecil = speed fast, dash
+    //tua = speed slow, no dash
+    //blind = speed normal, no dash
+    string[] helpTypeStrings = {"Normal", "Kid", "Old", "Blind" ,""};
+    [SerializeField]
+    int helpType;
     Vector3 defaultScale;
     [SerializeField]
     Vector2 lastDirection;
@@ -31,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         speed = defaultSpeed;
         defaultScale = transform.localScale;
+        helpType = 4;
     }
 
     // Update is called once per frame
@@ -38,43 +47,45 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("Speed",movement.Abs().magnitude);
-        animator.SetFloat("Vertical", movement.y);
         bool stopped = false;
-
         if(movement.x > 0 && movement.y > 0){
             // Debug.Log("UpRight");
-            animator.Play("UpRight");
+            directionString = "UpRight";
         }else if(movement.x < 0 && movement.y > 0){
             // Debug.Log("UpLeft");
-            animator.Play("UpLeft");
+            directionString = "UpLeft";
         }else if(movement.x > 0 && movement.y < 0){
             // Debug.Log("DownRight");
-            animator.Play("DownRight");
+            directionString = "DownRight";
         }else if(movement.x < 0 && movement.y < 0){
             // Debug.Log("DownLeft");
-            animator.Play("DownLeft");
+            directionString = "DownLeft";
         }else if(movement.Abs().magnitude < 0.1f){
             stopped = true;
             if(lastDirection.x > 0 && lastDirection.y > 0){
                 //top right
-                animator.Play("IdleUpRight");
+                directionString = "IdleUpRight";
             }else if(lastDirection.x < 0 && lastDirection.y > 0){
                 //top left
-                animator.Play("IdleUpLeft");
+                directionString = "IdleUpLeft";
                 // transform.localScale = new Vector3(defaultScale.x, transform.localScale.y, 1);
             }else if(lastDirection.x > 0 && lastDirection.y < 0){
                 //bottom right
-                animator.Play("IdleDownRight");
+                directionString = "IdleDownRight";
                 transform.localScale = new Vector3(-defaultScale.x, transform.localScale.y, 1);
             }else if(lastDirection.x < 0 && lastDirection.y < 0){
                 //bottom left
-                animator.Play("IdleDownLeft");
+                directionString = "IdleDownLeft";
             }else{
-                animator.Play("IdleDownLeft");
-            
+                directionString = "IdleDownLeft";
             }
         }
+        if(!helping){
+            helpType = 4;
+        }
+
+        animator.Play(helpTypeStrings[helpType] + directionString);
+
         if(!stopped){
             if(movement.x != 0){
                 lastDirection.x = movement.x;
@@ -83,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
                 lastDirection.y = movement.y;
             }
         }
+
         if(helpTarget != null && helping){
             helpEndTrigger.transform.GetChild(0).gameObject.SetActive(true);
         }else{
@@ -108,8 +120,7 @@ public class PlayerMovement : MonoBehaviour
                 if(touchingNPC && !helping){
                     helping = true;
                     helpEndTrigger = helpTarget.GetComponent<NPC>().endTrigger;
-                    animator.SetBool("Helping", true);
-                    animator.SetInteger("HelpType", helpTarget.GetComponent<NPC>().npcType);
+                    helpType = helpTarget.GetComponent<NPC>().npcType;
                     helpTarget.transform.parent = transform;
                     helpTarget.GetComponent<NPC>().gettingHelp = true;
                     speed = helpTarget.GetComponent<NPC>().speed;
@@ -118,13 +129,13 @@ public class PlayerMovement : MonoBehaviour
                     helpTarget.GetComponent<NPC>().gettingHelp = false;
                     helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     helpTarget.transform.parent = null;
-                    animator.SetInteger("HelpType", -1);
+                    helpType = 4;
                     speed = defaultSpeed;
                 }
             }else{
                 helping = false;
                 helpTarget = null;
-                animator.SetInteger("HelpType", -1);
+                helpType = 4;
                 speed = defaultSpeed;
             }
         }
@@ -138,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
                 helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
             }else{
                 helping = false;
-                animator.SetBool("Helping", false);
             }
         }
     }
@@ -171,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator DashRoutine(){
         canDash = false;
-        animator.SetTrigger("Dash");
+        // animator.Play("Dash" + directionString);
         speed = dashSpeed;
         yield return new WaitForSeconds(dashLength);
         speed = defaultSpeed;

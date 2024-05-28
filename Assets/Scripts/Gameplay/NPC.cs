@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    Animator animator;
     [SerializeField]
     UIManager uiManager;
     public int npcType;
@@ -20,12 +21,13 @@ public class NPC : MonoBehaviour
     [SerializeField]
     int waitingTime = 0;
     bool hasEnd = false;
-    private void OnEnable()
+    private void Awake()
     {
         patienceBar = transform.GetChild(0).gameObject;
         gettingHelp = false;
         rb = GetComponent<Rigidbody2D>();
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        animator = GetComponent<Animator>();
         waitingTime = 0;
     }
 

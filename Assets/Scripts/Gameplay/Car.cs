@@ -7,6 +7,7 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public AnimatorController[] animatorControllers = new AnimatorController[2];
+    public bool[] blockedPath = new bool [4];
     private Animator animator;
     public CarSpawner carSpawner;
     public bool hasSpeedBump;
@@ -20,7 +21,7 @@ public class Car : MonoBehaviour
     bool hasAttacked;
 
 
-    private void OnEnable()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -75,13 +76,16 @@ public class Car : MonoBehaviour
         }else{
             movespeed = 12;
         }
-        animator.Play("Star");
+        animator.Play("Stars");
     }
     IEnumerator UFOTurn(float seconds){
         if(!hasSwitchedDirection){
             // Debug.Log("UFO Switched Direction");
             hasSwitchedDirection = true;
             int randomSpawn = Random.Range(0, carSpawner.spawns.Length);
+            while(carSpawner.blockedPath[randomSpawn]){
+                randomSpawn = Random.Range(0, carSpawner.spawns.Length);
+            }
             yield return new WaitForSeconds(seconds);
             direction = carSpawner.spawns[randomSpawn].direction.normalized;
         }

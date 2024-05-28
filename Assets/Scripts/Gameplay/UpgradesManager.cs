@@ -6,7 +6,7 @@ public class UpgradesManager : MonoBehaviour
 {
     //This is the script where we will manage the upgrades while playing
     public GameObject[] upgradesGO = new GameObject[4];
-    readonly int[] upgradesLength = new int[] { 8, 1, 4, 4 };
+    readonly int[] upgradesLength = new int[] { 8, 1, 4, 8 };
     public bool[,] unlockedUpgrades = new bool[4,8];
     
     int upgradeLevelIndex ;
