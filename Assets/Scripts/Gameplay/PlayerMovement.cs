@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 defaultScale;
     [SerializeField]
     Vector2 lastDirection;
+    Vector2 adjustedDirection;
     // Start is called before the first frame update
     private void OnEnable(){
         rb = GetComponent<Rigidbody2D>();
@@ -145,10 +146,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = movement.normalized * speed;
+        adjustedDirection = (movement * new Vector2(6f, 3.5f)).normalized;
+        rb.velocity = adjustedDirection.normalized * speed;
         if(helping){
             if(helpTarget != null){
-                helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = movement * speed;
+                helpTarget.GetComponent<NPC>().GetComponent<Rigidbody2D>().velocity = adjustedDirection * speed;
             }else{
                 helping = false;
             }

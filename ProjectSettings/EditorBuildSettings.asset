@@ -9,15 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f463acae8b5a8954ea3248a5e7f5363e
   - enabled: 1
-    path: Assets/Scenes/Per2an.unity
+    path: Assets/Scenes/New Scene.unity
+    guid: 7c472f5f3ca53124e869625c70eadcd6
+  - enabled: 1
+    path: Assets/Scenes/New Scene 1.unity
+    guid: cf3f6a4006bf85e4c86f4761fa5ec5c7
+  - enabled: 1
+    path: Assets/Scenes/Lvl3.unity
     guid: 8a413f1b296a43c49868b810121f75fa
   - enabled: 1
-    path: Assets/Scenes/Dummy.unity
-    guid: f09fbc13497b3c5438e1d4cea72f0110
+    path: Assets/Scenes/New Scene 3.unity
+    guid: 07b9366954bd8d74fad2cfebbf30db85
   - enabled: 1
-    path: Assets/Scenes/Dummy 1.unity
-    guid: fd6063680afc321499d53413b79cb3e3
+    path: Assets/Scenes/New Scene 2.unity
+    guid: a71276ca201ca904f813073fc4e56025
   - enabled: 1
-    path: Assets/Scenes/Per2anShop.unity
+    path: Assets/Scenes/Lvl3Shop.unity
     guid: db55bf9e778348a4baeec0c02fcde325
   m_configObjects: {}

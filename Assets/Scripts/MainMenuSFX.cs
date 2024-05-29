@@ -2,29 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopSFXManager : MonoBehaviour
+public class MainMenuSFX : MonoBehaviour
 {
-    //0 = buy
-    //1 = not enough money
-    //2 = play 
     public AudioClip[] sfx;
+    //0 = button click
+    //1 = change lvl
+    //2 = play
     public AudioSource audioSource;
-
     private void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();
     }
-
-    public void BuySFX(){
-        audioSource.Stop();
+    public void ButtonClick()
+    {
         audioSource.PlayOneShot(sfx[0]);
     }
-
-    public void NotEnoughMoney(){
+    public void ChangeLvl()
+    {
         audioSource.PlayOneShot(sfx[1]);
     }
-
-    public void Play(){
+    public void Play()
+    {
         audioSource.PlayOneShot(sfx[2]);
     }
 }
