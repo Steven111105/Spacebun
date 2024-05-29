@@ -21,7 +21,7 @@ public class CarSpawner : MonoBehaviour
     public float turnDelay = 0.1f;
     public float turnDelayWithSpeedBump = 0.1f;
     
-    private void OnEnable()
+    private void Awake()
     {   
         StartCoroutine(SpawnCar());
     }

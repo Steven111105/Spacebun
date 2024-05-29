@@ -7,6 +7,8 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public AnimatorController[] animatorControllers = new AnimatorController[2];
+    public AudioClip[] carSFX;
+    AudioSource audioSource;
     public bool[] blockedPath = new bool [4];
     private Animator animator;
     public CarSpawner carSpawner;
@@ -26,6 +28,7 @@ public class Car : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         hasAttacked = false;
+        audioSource = GetComponent<AudioSource>();
     }
     public void SetCar(){
         hasSwitchedDirection = true;
@@ -67,6 +70,8 @@ public class Car : MonoBehaviour
             carSpawner = GameObject.Find("Spawner").GetComponent<CarSpawner>();
             // transform.localScale = new Vector3(2f, 2f, 1f);
         }
+        audioSource.clip = carSFX[carType];
+        audioSource.Play();
     }
     IEnumerator StarDelay(){
         movespeed = 0;
@@ -102,19 +107,12 @@ public class Car : MonoBehaviour
         {
             if(!hasAttacked){
                 GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
-                if(other.gameObject.CompareTag("Player")){
-                    hasAttacked = true; 
-                    // Debug.Log("Player Hit");
-                    GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
-                }else{
-                    hasAttacked = true;
-                    // Debug.Log("NPC Hit");
-                    other.gameObject.GetComponent<NPC>().Hit();
-                }
+                hasAttacked = true; 
+                // Debug.Log("Player Hit");
+                GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
             }
             // Destroy(gameObject);
-        }else if(other.gameObject.CompareTag("CometTurn"))
-        {
+        }else if(other.gameObject.CompareTag("CometTurn")){
             if(carType == 2){
                 if(hasSpeedBump){
                     StartCoroutine(UFOTurn(turnDelayWithSpeedBump));
@@ -124,6 +122,7 @@ public class Car : MonoBehaviour
             }
         }else if (other.gameObject.CompareTag("Destroy"))
         {
+            audioSource.Stop();
             Destroy(gameObject);
         }
     }

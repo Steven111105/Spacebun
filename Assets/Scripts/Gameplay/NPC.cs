@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NPC : MonoBehaviour
 {
     Animator animator;
-    [SerializeField]
     UIManager uiManager;
+    AudioSource audioSource;
     public int npcType;
     public Vector2 direction;
     public float speed;
@@ -20,7 +21,9 @@ public class NPC : MonoBehaviour
     GameObject patienceBar;
     [SerializeField]
     int waitingTime = 0;
-    bool hasEnd = false;
+    public bool hasEnd = false;
+    string[] helpTypeStrings = {"Normal", "Kid", "Old", "Blind" ,""};
+    string directionString;
     private void Awake()
     {
         patienceBar = transform.GetChild(0).gameObject;
@@ -28,6 +31,7 @@ public class NPC : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         waitingTime = 0;
     }
 
@@ -40,23 +44,19 @@ public class NPC : MonoBehaviour
         {
             speed = 2;
             canDash = false;
-            GetComponent<SpriteRenderer>().color = Color.red;
         }
         else if (npcType == 1)
         {
             speed = 3;
             canDash = true;
-            GetComponent<SpriteRenderer>().color = Color.blue;
         }else if (npcType == 2)
         {
             speed = 1;
             canDash = false;
-            GetComponent<SpriteRenderer>().color = Color.green;
         }else if (npcType == 3)
         {
             speed = 1.5f;
             canDash = false;
-            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
     // Update is called once per frame
@@ -65,6 +65,41 @@ public class NPC : MonoBehaviour
         if(!stopping){
             rb.velocity = direction * speed;
         }
+        if(!gettingHelp){
+            GetComponent<SpriteRenderer>().enabled = true;
+        }else{
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if(stopping){
+            if(direction.x > 0 && direction.y > 0){
+                //top right
+                directionString = "IdleUpRight";
+            }else if(direction.x < 0 && direction.y > 0){
+                //top left
+                directionString = "IdleUpLeft";
+            }else if(direction.x > 0 && direction.y < 0){
+                //bottom right
+                directionString = "IdleDownRight";
+            }else if(direction.x < 0 && direction.y < 0){
+                //bottom left
+                directionString = "IdleDownLeft";
+            }else{
+                directionString = "IdleDownLeft";
+            }
+        }else{
+            if(direction.x > 0 && direction.y > 0){
+                directionString = "UpRight";
+            }else if(direction.x < 0 && direction.y > 0){
+                directionString = "UpLeft";
+            }else if(direction.x > 0 && direction.y < 0){
+                directionString = "DownRight";
+            }else if(direction.x < 0 && direction.y < 0){
+                directionString = "DownLeft";
+            }else if(direction.Abs().magnitude < 0.1f){
+                stopping = true;
+            }
+        }
+        animator.Play(helpTypeStrings[npcType] + directionString);
     }
     void MakeVector(Transform origin, Transform Target){
         direction = (Target.position - origin.position).normalized;
@@ -80,6 +115,7 @@ public class NPC : MonoBehaviour
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         uiManager.AddScore(100 + (10-waitingTime)*10);
         uiManager.AddCarrot(2 + Random.Range(0, 3));
+        audioSource.Play();
         rb.velocity = direction * speed;
         Destroy(gameObject,0.5f);
     }
@@ -109,6 +145,8 @@ public class NPC : MonoBehaviour
                     stopping = false;
                     patienceBar.SetActive(false);
                 }
+            }else{
+                patienceBar.SetActive(false);
             }
             yield return new WaitForSeconds(0.1f);
         }

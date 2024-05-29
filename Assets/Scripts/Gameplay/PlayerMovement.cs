@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerSFXManager playerSFXManager;
     Rigidbody2D rb;
     Animator animator;
     Vector2 movement;
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     //kecil = speed fast, dash
     //tua = speed slow, no dash
     //blind = speed normal, no dash
-    string[] helpTypeStrings = {"Normal", "Kid", "Old", "Blind" ,""};
+    readonly string[] helpTypeStrings = {"Normal", "Kid", "Old", "Blind" ,""};
     [SerializeField]
     int helpType;
     Vector3 defaultScale;
@@ -117,13 +118,14 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.E)){
             if(helpTarget != null){
-                if(touchingNPC && !helping){
+                if(touchingNPC && !helping && helpTarget.GetComponent<NPC>().hasEnd){
                     helping = true;
                     helpEndTrigger = helpTarget.GetComponent<NPC>().endTrigger;
                     helpType = helpTarget.GetComponent<NPC>().npcType;
                     helpTarget.transform.parent = transform;
                     helpTarget.GetComponent<NPC>().gettingHelp = true;
                     speed = helpTarget.GetComponent<NPC>().speed;
+                    playerSFXManager.PlaySFX(1);
                 }else{
                     helping = false;
                     helpTarget.GetComponent<NPC>().gettingHelp = false;
@@ -160,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Hit(){
+        playerSFXManager.PlaySFX(2);
         StartCoroutine(HitRoutine());
         if(helping){
             helpTarget.GetComponent<NPC>().Hit();
@@ -181,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator DashRoutine(){
         canDash = false;
-        // animator.Play("Dash" + directionString);
+        playerSFXManager.PlaySFX(0);
         speed = dashSpeed;
         yield return new WaitForSeconds(dashLength);
         speed = defaultSpeed;

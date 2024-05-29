@@ -35,6 +35,7 @@ public class ShopUIManager : MonoBehaviour
         //upgrade 3 = bubble thing
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < upgradesLength[i]; j++){
+                //upgrade00
                 if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + j, 0) == 1){
                     upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
                     // unlockedUpgrades[i,j] = true;
