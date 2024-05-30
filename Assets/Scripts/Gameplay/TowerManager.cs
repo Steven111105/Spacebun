@@ -9,6 +9,7 @@ public class TowerManager : MonoBehaviour
     public int redLightDirection;
     public int activatedTower;
     public int[] redLightTimer = new int[4];
+    Color greenLight = new Color(0.6f, 0.8980393f, 0.8078432f, 1);
     private void OnEnable()
     {
         activatedTower = -1;
@@ -94,7 +95,7 @@ public class TowerManager : MonoBehaviour
                     if(j >= redLightTimer[i]){
                         redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.yellow;
                     }else{
-                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.green;
+                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = greenLight;
                     }
                 }
             }

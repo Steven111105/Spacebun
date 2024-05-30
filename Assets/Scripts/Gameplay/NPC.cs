@@ -115,7 +115,7 @@ public class NPC : MonoBehaviour
         uiManager.AddCarrot(2 + UnityEngine.Random.Range(0, 3));
         audioSource.Play();
         rb.velocity = direction * speed;
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject,0.7f);
     }
     public void Hit(){
         StartCoroutine(HitRoutine());

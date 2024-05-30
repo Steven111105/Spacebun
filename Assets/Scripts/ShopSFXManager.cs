@@ -7,6 +7,7 @@ public class ShopSFXManager : MonoBehaviour
     //0 = buy
     //1 = not enough money
     //2 = play 
+    //3 = next button for story
     public AudioClip[] sfx;
     public AudioSource audioSource;
 
@@ -22,6 +23,10 @@ public class ShopSFXManager : MonoBehaviour
 
     public void NotEnoughMoney(){
         audioSource.PlayOneShot(sfx[1]);
+    }
+
+    public void NextButton(){
+        audioSource.PlayOneShot(sfx[3]);
     }
 
     public void Play(){

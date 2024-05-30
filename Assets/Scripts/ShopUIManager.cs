@@ -7,16 +7,19 @@ using UnityEngine;
 public class ShopUIManager : MonoBehaviour
 {
     // public GameObject test;
-    public GameObject[] upgradesGO = new GameObject[4];
-    public int[,] upgradeCosts = new int[4,9]{
+    public GameObject[] upgradesGO = new GameObject[5];
+    readonly int[,] upgradeCosts = new int[4,9]{
         {5,10,15,25,30,35,50,55,55},
         {60,0,10,10,0,0,0,0,0},
         {20,25,40,50,0,0,0,0,0},
         {20,25,40,50,0,0,0,0,0}
-    }; 
-    readonly int[,] upgradesLength = { {4, 1, 4, 3}, { 6, 1, 4, 3}, {8, 1, 4, 4}};
+    };     
+    readonly int[,] upgradesLength = { {6, 1, 3, 3}, { 6, 1, 3, 3}, {8, 1, 4, 4}};
+
     public TMP_Text carrotsText;
     int upgradeLevelIndex;
+    Color greenLight = new(0.6f, 0.8980393f, 0.8078432f, 1);
+    bool[] hasSeenLvlStory = new bool[3];
     private void OnEnable()
     {
         // Debug.Log(test.transform.GetSiblingIndex());
@@ -28,6 +31,9 @@ public class ShopUIManager : MonoBehaviour
         //4 = Shop Lvl 1    //upgradeLevelIndex = 4-4 = 0
         //5 = Shop Lvl 2
         //6 = Shop Lvl 3
+        hasSeenLvlStory[0] = PlayerPrefs.GetInt("HasSeenLvl1Story", 0) == 1;
+        hasSeenLvlStory[1] = PlayerPrefs.GetInt("HasSeenLvl2Story", 0) == 1;
+        hasSeenLvlStory[2] = PlayerPrefs.GetInt("HasSeenLvl3Story", 0) == 1;
         Time.timeScale = 1;
         upgradeLevelIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex - 4;
         carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
@@ -66,15 +72,23 @@ public class ShopUIManager : MonoBehaviour
             int cost = upgradeCosts[i, level];
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
                 Debug.Log("upgrade" + i + " index" + j);
-                if(!upgradesGO[i].transform.GetChild(j).gameObject.activeSelf){
-                    continue;
-                }
                 //upgrade 0 = zebra cross for blind
                 //upgrade 1 = Warning lights
                 //upgrade 2 = speed bump
                 //upgrade 3 = bubble thing
                 if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + j, 0) == 1){
-                    upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
+                    if(upgradeLevelIndex == 0){
+                        if(i == 0){
+                            if(j == 2 || j == 3){
+                                continue;
+                            }
+                        }else{
+                            if(j == 1){
+                                continue;
+                            }
+                        }
+                    }
+                    // upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
                     if(i == 1){
                         for(int k = 0; k < 5; k++){
                             upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.white;
@@ -82,12 +96,26 @@ public class ShopUIManager : MonoBehaviour
                     }else if(i == 3){
                         upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.white;
                         upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.white;
+                        for(int k = 0; k < 8; k++){
+                            upgradesGO[i+1].transform.GetChild(j).transform.GetChild(k).GetComponent<SpriteRenderer>().color = greenLight;
+                        }
                     }else{
                         upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.white;
                     }
                     //deactivating button from shop
                     transform.GetChild(i+1).transform.GetChild(j).gameObject.SetActive(false);
                 }else{
+                    if(upgradeLevelIndex == 0){
+                        if(i == 0){
+                            if(j == 2 || j == 3){
+                                continue;
+                            }
+                        }else{
+                            if(j == 1){
+                                continue;
+                            }
+                        }
+                    }
                     if(i == 1){
                         for(int k = 0; k < 5; k++){
                             upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
@@ -95,6 +123,9 @@ public class ShopUIManager : MonoBehaviour
                     }else if(i == 3){
                         upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.gray;
                         upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.gray;
+                        for(int k = 0; k < 8; k++){
+                            upgradesGO[i+1].transform.GetChild(j).transform.GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
+                        }
                     }else{
                         upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.gray;
                     }
@@ -107,6 +138,12 @@ public class ShopUIManager : MonoBehaviour
     }
 
     public void PlayButton(){
+        if(!hasSeenLvlStory[upgradeLevelIndex]){
+            hasSeenLvlStory[upgradeLevelIndex] = true;
+            PlayerPrefs.SetInt("HasSeenLvl" + (upgradeLevelIndex+1) + "Story", 1);
+            GetComponent<LevelStory>().StartStory(upgradeLevelIndex);
+            return;
+        }
         GetComponent<ShopSFXManager>().Play();
         StartCoroutine(PlayCoroutine());
     }

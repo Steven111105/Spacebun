@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Data;
 using System.Threading;
 
 
@@ -20,17 +21,30 @@ public class CarSpawner : MonoBehaviour
     public SpawnDatas[] spawns;
     public float turnDelay = 0.1f;
     public float turnDelayWithSpeedBump = 0.1f;
+    int level;
+    int randomSpawn;
     
     private void Awake()
     {   
         StartCoroutine(SpawnCar());
+        level = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
     }
 
     IEnumerator SpawnCar(){
         while(true){
             //4*e^(-0.005t) + 1
             yield return new WaitForSeconds(4*MathF.Exp(-0.005f*Time.timeSinceLevelLoad) + 1f);
-            int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);
+            if(level == 1){
+                randomSpawn = UnityEngine.Random.Range(0, 2);
+                if(randomSpawn == 1){
+                    randomSpawn = 2;
+                }
+            }else if(level == 2){
+                randomSpawn = UnityEngine.Random.Range(0, 3);
+            }else{
+                randomSpawn = UnityEngine.Random.Range(0, 4);
+            }
+                
             Debug.Log("Random Spawn: " + randomSpawn);
             if(!blockedPath[randomSpawn]){
                 GameObject spawnedCar = Instantiate(carPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
