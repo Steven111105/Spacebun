@@ -5,37 +5,68 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     public CarSpawner carSpawner;
+    public GameObject redLines;
     public int redLightDirection;
-    public GameObject[] pathGameObject = new GameObject[4];
+    public int activatedTower;
+    public int[] redLightTimer = new int[4];
     private void OnEnable()
     {
+        activatedTower = -1;
+        redLightDirection = -1;
+        StartCoroutine(RedLightTimer());
         Unblock();
         UpdateRedLines();
     }
+    IEnumerator RedLightTimer(){
+        while(true){
+            for(int i = 0; i < 4; i++){
+                if(i != redLightDirection){
+                    redLightTimer[i]++;
+                    if(redLightTimer[i] >= 8){
+                        redLightTimer[i] = 8;
+                    }
+                }else{
+                    redLightTimer[i]--;
+                    if(redLightTimer[i] <= 0){
+                        redLightTimer[i] = 0;
+                        redLightDirection = -1;
+                        activatedTower = -1;
+                        Unblock();
+                    }
+                    
+                }
+            }
+            yield return new WaitForSeconds(1);
+            UpdateRedLines();
+        }
+    }
 
     public void Block(int index){
-        // Block the path
-        index /= 2;
-        redLightDirection = index;  
-        switch(index){
-            case 0:
-                carSpawner.blockedPath[0] = true;
-                carSpawner.blockedPath[2] = true;
-                break;
-            case 1:
-                carSpawner.blockedPath[1] = true;
-                carSpawner.blockedPath[3] = true;
-                break;
-            case 2:
-                carSpawner.blockedPath[2] = true;
-                carSpawner.blockedPath[0] = true;
-                break;
-            case 3:
-                carSpawner.blockedPath[1] = true;
-                carSpawner.blockedPath[3] = true;
-                break;
+        if(activatedTower == -1){
+            Debug.Log("activated " + activatedTower + " index " + index);
+            // Block the path
+            activatedTower = index;
+            redLightDirection = index;  
+            switch(index){
+                case 0:
+                    carSpawner.blockedPath[0] = true;
+                    carSpawner.blockedPath[2] = true;
+                    break;
+                case 1:
+                    carSpawner.blockedPath[1] = true;
+                    carSpawner.blockedPath[3] = true;
+                    break;
+                case 2:
+                    carSpawner.blockedPath[2] = true;
+                    carSpawner.blockedPath[0] = true;
+                    break;
+                case 3:
+                    carSpawner.blockedPath[1] = true;
+                    carSpawner.blockedPath[3] = true;
+                    break;
+            }
+            UpdateRedLines();
         }
-        UpdateRedLines();
     }
 
     public void Unblock(){
@@ -44,16 +75,28 @@ public class TowerManager : MonoBehaviour
         carSpawner.blockedPath[1] = false;
         carSpawner.blockedPath[2] = false;
         carSpawner.blockedPath[3] = false;
+        activatedTower = -1;
         redLightDirection = -1;
         UpdateRedLines();
     }
 
     void UpdateRedLines(){
         for(int i = 0; i < 4; i++){
-            if(i == redLightDirection){
-                pathGameObject[i].GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
-            }else{
-                pathGameObject[i].GetComponent<SpriteRenderer>().color = new Color(0,1,0,1);
+            for(int j = 0; j < 8; j++){
+                if(i == redLightDirection){
+                    if(j <= redLightTimer[i]-1){
+                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.red;
+                    }else{
+                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.yellow;
+
+                    }
+                }else{
+                    if(j >= redLightTimer[i]){
+                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.yellow;
+                    }else{
+                        redLines.transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.green;
+                    }
+                }
             }
         }
     }

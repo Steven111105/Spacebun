@@ -14,7 +14,7 @@ public class ShopUIManager : MonoBehaviour
         {20,25,40,50,0,0,0,0,0},
         {20,25,40,50,0,0,0,0,0}
     }; 
-    readonly int[,] upgradesLength = { {4, 1, 4, 4}, { 6, 1, 4, 6}, {8, 1, 4, 8}};
+    readonly int[,] upgradesLength = { {4, 1, 4, 3}, { 6, 1, 4, 3}, {8, 1, 4, 4}};
     public TMP_Text carrotsText;
     int upgradeLevelIndex;
     private void OnEnable()
@@ -34,6 +34,13 @@ public class ShopUIManager : MonoBehaviour
         RefreshUpgrades();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R)){
+            Debug.Log("money");
+            PlayerPrefs.SetInt("Carrots", 1000);
+        }
+    }
     public void Buy(Transform button){
         int index = button.GetSiblingIndex();
         int upgrade = button.parent.GetSiblingIndex()-1;
@@ -59,20 +66,37 @@ public class ShopUIManager : MonoBehaviour
             int cost = upgradeCosts[i, level];
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
                 Debug.Log("upgrade" + i + " index" + j);
+                if(!upgradesGO[i].transform.GetChild(j).gameObject.activeSelf){
+                    continue;
+                }
                 //upgrade 0 = zebra cross for blind
                 //upgrade 1 = Warning lights
                 //upgrade 2 = speed bump
                 //upgrade 3 = bubble thing
                 if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + j, 0) == 1){
                     upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
-                    upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.white;
+                    if(i == 1){
+                        for(int k = 0; k < 5; k++){
+                            upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.white;
+                        }
+                    }else if(i == 3){
+                        upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.white;
+                        upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.white;
+                    }else{
+                        upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.white;
+                    }
                     //deactivating button from shop
                     transform.GetChild(i+1).transform.GetChild(j).gameObject.SetActive(false);
                 }else{
-                    if(i != 1){
-                        upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.gray;
+                    if(i == 1){
+                        for(int k = 0; k < 5; k++){
+                            upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
+                        }
+                    }else if(i == 3){
+                        upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.gray;
+                        upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.gray;
                     }else{
-                        //Find a way to make police grayed out
+                        upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.gray;
                     }
                     //activating button from shop
                     transform.GetChild(i+1).transform.GetChild(j).gameObject.SetActive(true);

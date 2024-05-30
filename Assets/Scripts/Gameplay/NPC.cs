@@ -1,9 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class NPC : MonoBehaviour
 {
@@ -95,7 +93,7 @@ public class NPC : MonoBehaviour
                 directionString = "DownRight";
             }else if(direction.x < 0 && direction.y < 0){
                 directionString = "DownLeft";
-            }else if(direction.Abs().magnitude < 0.1f){
+            }else if(Mathf.Abs(direction.x) < 0.1f && Mathf.Abs(direction.y) < 0.1f){
                 stopping = true;
             }
         }
@@ -114,7 +112,7 @@ public class NPC : MonoBehaviour
         }
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         uiManager.AddScore(100 + (10-waitingTime)*10);
-        uiManager.AddCarrot(2 + Random.Range(0, 3));
+        uiManager.AddCarrot(2 + UnityEngine.Random.Range(0, 3));
         audioSource.Play();
         rb.velocity = direction * speed;
         Destroy(gameObject,0.5f);

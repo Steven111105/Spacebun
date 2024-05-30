@@ -36,7 +36,7 @@ public class NPCSpawner : MonoBehaviour
     IEnumerator SpawnNPC(){
         while(true){
             //4*e^(-0.005t) - 0.5
-            yield return new WaitForSeconds(7*MathF.Exp(-0.008f*Time.timeSinceLevelLoad));
+            yield return new WaitForSeconds(2*MathF.Exp(-0.008f*Time.timeSinceLevelLoad) + 4);
             // Debug.Log("Spawning NPC");
             //random location
             int randomSpawn = UnityEngine.Random.Range(0, spawns.Length);

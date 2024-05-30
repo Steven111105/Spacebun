@@ -7,7 +7,7 @@ public class UpgradesManager : MonoBehaviour
     //This is the script where we will manage the upgrades while playing
     public GameObject[] upgradesGO = new GameObject[4];
     public GameObject zebraStops;
-    readonly int[,] upgradesLength = { {4, 1, 4, 4}, { 6, 1, 4, 6}, {8, 1, 4, 8}};
+    readonly int[,] upgradesLength = { {4, 1, 4, 3}, { 6, 1, 4, 3}, {8, 1, 4, 4}};
     public bool[,] unlockedUpgrades = new bool[4,8];
     
     int upgradeLevelIndex ;
@@ -16,7 +16,12 @@ public class UpgradesManager : MonoBehaviour
         upgradeLevelIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex-1;
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
-                upgradesGO[i].transform.GetChild(j).gameObject.SetActive(false);
+                if(i == 3){
+                    upgradesGO[i].transform.GetChild(j*2).gameObject.SetActive(false);
+                    upgradesGO[i].transform.GetChild(j*2+1).gameObject.SetActive(false);
+                }else{
+                    upgradesGO[i].transform.GetChild(j).gameObject.SetActive(false);
+                }
                 if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + j, 0) == 1){
                     unlockedUpgrades[i,j] = true;
                 }
@@ -28,8 +33,13 @@ public class UpgradesManager : MonoBehaviour
                 if(unlockedUpgrades[i,j]){
                     if(i == 0){
                         zebraStops.transform.GetChild(j).GetComponent<ZebraCross>().blindStop = true;
+                        upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
+                    }else if(i == 3){
+                        upgradesGO[i].transform.GetChild(j*2).gameObject.SetActive(true);
+                        upgradesGO[i].transform.GetChild(j*2+1).gameObject.SetActive(true);
+                    }else{
+                        upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
                     }
-                    upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
                 }
             }
         }

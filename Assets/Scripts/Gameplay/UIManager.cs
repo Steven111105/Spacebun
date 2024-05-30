@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -12,6 +7,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text carrotText;
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
     int maxHealth = 3;
     int currHealth;
     int score;
@@ -27,6 +23,7 @@ public class UIManager : MonoBehaviour
         currHealth = maxHealth;
         SetHealth();
         gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
         score = 0;
         scoreText.text = "Score: " + score;
         carrotText.text = carrots.ToString();
@@ -37,6 +34,16 @@ public class UIManager : MonoBehaviour
         {
             GameOver();
         }
+        //
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Pause();
+        }
+    }
+    
+    public void Pause(){
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
     }
 
     public void AddScore(int addedScore){

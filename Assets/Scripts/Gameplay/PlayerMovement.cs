@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }else if(movement.x < 0 && movement.y < 0){
             // Debug.Log("DownLeft");
             directionString = "DownLeft";
-        }else if(movement.Abs().magnitude < 0.1f){
+        }else if(Mathf.Abs(movement.x) < 0.1f && Mathf.Abs(movement.y) < 0.1f){
             stopped = true;
             if(lastDirection.x > 0 && lastDirection.y > 0){
                 //top right

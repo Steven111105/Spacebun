@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public AnimatorController[] animatorControllers = new AnimatorController[2];
+    public RuntimeAnimatorController[] animatorControllers = new RuntimeAnimatorController[2];
     public AudioClip[] carSFX;
     AudioSource audioSource;
     public bool[] blockedPath = new bool [4];
@@ -53,7 +50,7 @@ public class Car : MonoBehaviour
             // Debug.Log(Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
             transform.localRotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg+45f);
 
-            GetComponent<CircleCollider2D>().radius = 0.24f;
+            GetComponent<CircleCollider2D>().radius = 0.2f;
             transform.localScale = new Vector3(1.5f, 1.5f, 1f);
             StartCoroutine(StarDelay());
         }else if(carType == 2){
@@ -106,10 +103,18 @@ public class Car : MonoBehaviour
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("NPC"))
         {
             if(!hasAttacked){
-                GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
-                hasAttacked = true; 
-                // Debug.Log("Player Hit");
-                GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
+                if(other.gameObject.CompareTag("NPC")){
+                    if(other.transform.parent == null){
+                        GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
+                        hasAttacked = true; 
+                        GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
+                    }
+                }else{
+                    GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
+                    hasAttacked = true; 
+                    // Debug.Log("Player Hit");
+                    GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
+                }
             }
             // Destroy(gameObject);
         }else if(other.gameObject.CompareTag("CometTurn")){

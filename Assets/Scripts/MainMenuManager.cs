@@ -20,13 +20,13 @@ public class MainMenuManager : MonoBehaviour
         highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
         highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
-        if(highscore[0] > 10000){
+        // if(highscore[0] > 3000){
             unlockedLvl2 = true;
-        }
-        if(highscore[1] > 10000){
+        // }
+        // if(highscore[1] > 3000){
             unlockedLvl3 = true;
-        }
-        highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+        // }
+        highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
     }
     public void LevelSelect(){
@@ -63,20 +63,20 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Next");
         if(mainMenuAnim.GetInteger("Level") != 2){
             mainMenuAnim.SetInteger("Level", mainMenuAnim.GetInteger("Level") + 1);;
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+            highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         }else{
             mainMenuAnim.SetInteger("Level", 0);
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+            highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         }
     }
     public void PrevLvl(){
         Debug.Log("Prev");
         if(mainMenuAnim.GetInteger("Level") != 0){
             mainMenuAnim.SetInteger("Level", mainMenuAnim.GetInteger("Level") - 1);;
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+            highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         }else{
             mainMenuAnim.SetInteger("Level", 2);
-            highscoreText.text = "High Score: " + highscore[mainMenuAnim.GetInteger("Level")];
+            highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         }
     }
     public void Back(){
