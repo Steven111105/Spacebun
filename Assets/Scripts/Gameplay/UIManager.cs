@@ -75,16 +75,16 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-        gameOverPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = "Skor: " + score;
-        gameOverPanel.transform.GetChild(1).GetComponent<TMP_Text>().text = "Tambahan Wortel +" + (carrots - prevCarrots);
-        gameOverPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = "Total Wortel " + carrots;
-        //get scene index
-        int sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        if(score > PlayerPrefs.GetInt("HighScore" + sceneIndex, 0))
+        if(score > PlayerPrefs.GetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, 0))
         {
             //save highscore on "Highscore" + sceneIndex
-            PlayerPrefs.SetInt("HighScore" + sceneIndex, score);
+            PlayerPrefs.SetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, score);
         }
+        gameOverPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = "Skor: " + score;
+        gameOverPanel.transform.GetChild(1).GetComponent<TMP_Text>().text = "Skor Tertinggi: " + PlayerPrefs.GetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, 0);
+        gameOverPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = "Tambahan Wortel +" + (carrots - prevCarrots);
+        gameOverPanel.transform.GetChild(3).GetComponent<TMP_Text>().text = "Total Wortel " + carrots;
+        //get scene index
         PlayerPrefs.SetInt("Carrots", carrots);
         gameOverPanel.SetActive(true);
     }

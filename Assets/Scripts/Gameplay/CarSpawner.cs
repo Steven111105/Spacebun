@@ -33,7 +33,7 @@ public class CarSpawner : MonoBehaviour
     IEnumerator SpawnCar(){
         while(true){
             //4*e^(-0.005t) + 1
-            yield return new WaitForSeconds(4*MathF.Exp(-0.005f*Time.timeSinceLevelLoad) + 1f);
+            yield return new WaitForSeconds(2*MathF.Exp(-0.005f*Time.timeSinceLevelLoad) + 4f);
             if(level == 1){
                 randomSpawn = UnityEngine.Random.Range(0, 2);
                 if(randomSpawn == 1){

@@ -52,6 +52,7 @@ public class HowToPlay : MonoBehaviour
             GetComponent<MainMenuManager>().LevelSelect();
             return;
         }
+        backButton.SetActive(true);
         spriteRenderer.sprite = dialogues[currentPage].page;
         animator.Play(dialogues[currentPage].pose);
     }
