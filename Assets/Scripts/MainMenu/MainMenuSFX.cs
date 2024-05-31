@@ -8,6 +8,7 @@ public class MainMenuSFX : MonoBehaviour
     //0 = button click
     //1 = change lvl
     //2 = play
+    //3 = locked
     public AudioSource audioSource;
     private void OnEnable()
     {
@@ -20,6 +21,10 @@ public class MainMenuSFX : MonoBehaviour
     public void ChangeLvl()
     {
         audioSource.PlayOneShot(sfx[1]);
+    }
+    public void Locked()
+    {
+        audioSource.PlayOneShot(sfx[3]);
     }
     public void Play()
     {

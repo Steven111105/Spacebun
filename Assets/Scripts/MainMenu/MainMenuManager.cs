@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     public bool unlockedLvl3;
     public int[] highscore = new int[3];
     bool hasSeenTutorial;
+    public GameObject maps;
 
     private void OnEnable()
     {
@@ -20,13 +20,15 @@ public class MainMenuManager : MonoBehaviour
         highscore[0] = PlayerPrefs.GetInt("HighScore1", 0);
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
         highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
-        hasSeenTutorial = PlayerPrefs.GetInt("HasSeenTutorial", 0) == 1 ? true : false;
-        // if(highscore[0] > 3000){
+        hasSeenTutorial = PlayerPrefs.GetInt("HasSeenTutorial", 0) == 1;
+        if(highscore[0] > 3000){
             unlockedLvl2 = true;
-        // }
-        // if(highscore[1] > 3000){
+            maps.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+        }
+        if(highscore[1] > 3000){
             unlockedLvl3 = true;
-        // }
+            maps.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
+        }
         highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
     }
@@ -44,14 +46,14 @@ public class MainMenuManager : MonoBehaviour
         }else{
             if(mainMenuAnim.GetInteger("Level") == 0){
                 StartCoroutine(PlayDelay());
-                
-            }if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
+            }else if(mainMenuAnim.GetInteger("Level") == 1 && unlockedLvl2){
                 StartCoroutine(PlayDelay());
                 
             }else if(mainMenuAnim.GetInteger("Level") == 2 && unlockedLvl3){
                 StartCoroutine(PlayDelay());
+            }else{
+                GetComponent<MainMenuSFX>().Locked();
             }
-            return;
         }
     }
     IEnumerator PlayDelay(){
@@ -82,6 +84,10 @@ public class MainMenuManager : MonoBehaviour
             mainMenuAnim.SetInteger("Level", 2);
             highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         }
+    }
+    public void ResetSave(){
+        PlayerPrefs.DeleteAll();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void Back(){
         Debug.Log("Back");
