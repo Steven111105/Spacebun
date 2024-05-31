@@ -28,6 +28,13 @@ public class LevelStory : MonoBehaviour
         spriteRenderer = dialoguePanel.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && storyCanvas.activeSelf){
+            NextPage();
+        }
+    }
+
     public void StartStory(int level){
         levelIndex = level;
         PlayerPrefs.SetInt("HasSeenLvl" + (level+1) + "Story", 1);

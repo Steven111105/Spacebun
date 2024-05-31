@@ -27,6 +27,13 @@ public class HowToPlay : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && tutorialCanvas.activeSelf){
+            NextPage();
+        }
+    }
+
     public void StartPages(){
         PlayerPrefs.SetInt("HasSeenTutorial", 1);
         tutorialCanvas.SetActive(true);

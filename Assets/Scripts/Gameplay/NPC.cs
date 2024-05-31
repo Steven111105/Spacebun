@@ -109,11 +109,11 @@ public class NPC : MonoBehaviour
             transform.parent.GetComponent<PlayerMovement>().helpTarget = null;
             transform.parent.GetComponent<PlayerMovement>().SetDefaultSpeed();
             transform.parent = null;
+            uiManager.AddCarrot(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex*2+1 + UnityEngine.Random.Range(0, 4));
+            audioSource.Play();
         }
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         uiManager.AddScore(100 + (10-waitingTime)*10);
-        uiManager.AddCarrot(2 + UnityEngine.Random.Range(0, 3));
-        audioSource.Play();
         rb.velocity = direction * speed;
         Destroy(gameObject,0.7f);
     }

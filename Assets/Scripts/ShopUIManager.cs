@@ -8,11 +8,17 @@ public class ShopUIManager : MonoBehaviour
 {
     // public GameObject test;
     public GameObject[] upgradesGO = new GameObject[5];
-    readonly int[,] upgradeCosts = new int[4,9]{
-        {5,10,15,25,30,35,50,55,55},
-        {60,0,10,10,0,0,0,0,0},
-        {20,25,40,50,0,0,0,0,0},
-        {20,25,40,50,0,0,0,0,0}
+    readonly int[,,] upgradeCosts = new int[,,]{
+        {
+            //zebra                       //warning lights         //speed bump            //bubble
+            {5,10,15,25,0,0,0,0,0}, {60,0,0,0,0,0,0,0,0}, {15,25,40,50,0,0,0,0,0}, {15,25,40,50,0,0,0,0,0}
+        },
+        {
+            {15,25,30,40,45,50,0,0,0}, {85,0,0,0,0,0,0,0,0}, {25,35,45,60,0,0,0,0,0}, {30,40,65,0,0,0,0,0,0}
+        },
+        {
+            {30,35,45,50,55,65,70,80,80}, {150,0,0,10,0,0,0,0,0}, {40,50,60,70,0,0,0,0,0}, {40,55,75,100,0,0,0,0,0}
+        }
     };     
     readonly int[,] upgradesLength = { {6, 1, 3, 3}, { 6, 1, 3, 3}, {8, 1, 4, 4}};
 
@@ -51,10 +57,10 @@ public class ShopUIManager : MonoBehaviour
         int index = button.GetSiblingIndex();
         int upgrade = button.parent.GetSiblingIndex()-1;
         int level = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + upgrade + "Level", 0);
-        if (PlayerPrefs.GetInt("Carrots") >= upgradeCosts[upgrade, level])
+        if (PlayerPrefs.GetInt("Carrots") >= upgradeCosts[upgradeLevelIndex,upgrade, level])
         {
             GetComponent<ShopSFXManager>().BuySFX();
-            PlayerPrefs.SetInt("Carrots", PlayerPrefs.GetInt("Carrots") - upgradeCosts[upgrade, level]);
+            PlayerPrefs.SetInt("Carrots", PlayerPrefs.GetInt("Carrots") - upgradeCosts[upgradeLevelIndex,upgrade, level]);
             PlayerPrefs.SetInt("Upgrade" + upgradeLevelIndex + upgrade + "Level", level + 1);
             Debug.Log("Upgrade" + upgradeLevelIndex + upgrade + index);
             PlayerPrefs.SetInt("Upgrade" + upgradeLevelIndex + upgrade + index, 1);
@@ -69,7 +75,7 @@ public class ShopUIManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             int level = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + "Level", 0);
-            int cost = upgradeCosts[i, level];
+            int cost = upgradeCosts[upgradeLevelIndex,i, level];
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
                 Debug.Log("upgrade" + i + " index" + j);
                 //upgrade 0 = zebra cross for blind
