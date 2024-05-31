@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: Main
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -3150,7 +3150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Keluar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -4891,7 +4891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Pengaturan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -4954,7 +4954,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -25, y: 0, z: -25, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5372,7 +5372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How To Play
+  m_text: Cara Bermain
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}

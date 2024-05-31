@@ -20,6 +20,7 @@ public class LevelStory : MonoBehaviour
     Animator animator;
     int currentPage;
     int levelIndex;
+    public GameObject backbutton;
     private void OnEnable()
     {
         storyCanvas.SetActive(false);
@@ -32,6 +33,7 @@ public class LevelStory : MonoBehaviour
         PlayerPrefs.SetInt("HasSeenLvl" + (level+1) + "Story", 1);
         storyCanvas.SetActive(true);
         currentPage = 0;
+        backbutton.SetActive(false);
         spriteRenderer = dialoguePanel.transform.GetChild(0).GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = stories[level].dialogues[currentPage].page;
         animator.Play(stories[level].dialogues[currentPage].pose);
@@ -44,6 +46,19 @@ public class LevelStory : MonoBehaviour
             GetComponent<ShopUIManager>().PlayButton();
             return;
         }
+        backbutton.SetActive(true);
+        spriteRenderer.sprite = stories[levelIndex].dialogues[currentPage].page;
+        animator.Play(stories[levelIndex].dialogues[currentPage].pose);
+    }
+
+    public void PrevPage(){
+        currentPage--;
+        if(currentPage < 0){
+            currentPage = 0;
+            backbutton.SetActive(false);
+            return;
+        }
+        backbutton.SetActive(true);
         spriteRenderer.sprite = stories[levelIndex].dialogues[currentPage].page;
         animator.Play(stories[levelIndex].dialogues[currentPage].pose);
     }

@@ -18,6 +18,7 @@ public class HowToPlay : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     int currentPage = 0;
+    public GameObject backButton;
     private void OnEnable()
     {
         tutorialCanvas.SetActive(false);
@@ -30,6 +31,7 @@ public class HowToPlay : MonoBehaviour
         PlayerPrefs.SetInt("HasSeenTutorial", 1);
         tutorialCanvas.SetActive(true);
         currentPage = 0;
+        backButton.SetActive(false);
         spriteRenderer.sprite = dialogues[currentPage].page;
         animator.Play(dialogues[currentPage].pose);
     }
@@ -43,6 +45,18 @@ public class HowToPlay : MonoBehaviour
             GetComponent<MainMenuManager>().LevelSelect();
             return;
         }
+        spriteRenderer.sprite = dialogues[currentPage].page;
+        animator.Play(dialogues[currentPage].pose);
+    }
+
+    public void PrevPage(){
+        currentPage--;
+        if(currentPage < 0){
+            currentPage = 0;
+            backButton.SetActive(false);
+            return;
+        }
+        backButton.SetActive(true);
         spriteRenderer.sprite = dialogues[currentPage].page;
         animator.Play(dialogues[currentPage].pose);
     }
