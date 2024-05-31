@@ -43,6 +43,7 @@ public class LevelStory : MonoBehaviour
         backbutton.SetActive(false);
         spriteRenderer = dialoguePanel.transform.GetChild(0).GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = stories[level].dialogues[currentPage].page;
+        animator.Play("HumanIdle");
         animator.Play(stories[level].dialogues[currentPage].pose);
     }
 
@@ -55,19 +56,20 @@ public class LevelStory : MonoBehaviour
         }
         backbutton.SetActive(true);
         spriteRenderer.sprite = stories[levelIndex].dialogues[currentPage].page;
-        animator.Play(stories[levelIndex].dialogues[currentPage].pose);
+        animator.Play(stories[levelIndex].dialogues[currentPage].pose,1,0);
     }
 
     public void PrevPage(){
         currentPage--;
-        if(currentPage < 0){
+        if(currentPage <= 0){
             currentPage = 0;
             backbutton.SetActive(false);
             return;
         }
         backbutton.SetActive(true);
         spriteRenderer.sprite = stories[levelIndex].dialogues[currentPage].page;
-        animator.Play(stories[levelIndex].dialogues[currentPage].pose);
+        animator.Play("HumanIdle");
+        animator.Play(stories[levelIndex].dialogues[currentPage].pose,1,0);
     }
 
 

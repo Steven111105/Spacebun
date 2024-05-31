@@ -1,8 +1,16 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
+    public AudioClip buttonSFX;
+    public AudioSource audioSource;
+    public UnityEvent pause;
+    public UnityEvent unpause;
+    public UnityEvent gameOver;
+    public AudioSource BGM;
     public GameObject hearts;
     public TMP_Text scoreText;
     public TMP_Text carrotText;
@@ -25,8 +33,12 @@ public class UIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
         score = 0;
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
         carrotText.text = carrots.ToString();
+        audioSource = GetComponent<AudioSource>();
+    }
+    public void ButtonClick(){
+        audioSource.PlayOneShot(buttonSFX);
     }
     private void Update()
     {
@@ -44,6 +56,15 @@ public class UIManager : MonoBehaviour
     public void Pause(){
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+        BGM.Pause();
+        pause.Invoke();
+    }
+
+    public void Unpause(){
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+        BGM.UnPause();
+        unpause.Invoke();
     }
 
     public void AddScore(int addedScore){
@@ -75,6 +96,8 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        BGM.Stop();
+        gameOver.Invoke();
         if(score > PlayerPrefs.GetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, 0))
         {
             //save highscore on "Highscore" + sceneIndex

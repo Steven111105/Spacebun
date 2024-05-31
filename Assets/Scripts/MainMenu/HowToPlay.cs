@@ -37,6 +37,7 @@ public class HowToPlay : MonoBehaviour
     public void StartPages(){
         PlayerPrefs.SetInt("HasSeenTutorial", 1);
         tutorialCanvas.SetActive(true);
+        human.SetActive(true);
         currentPage = 0;
         backButton.SetActive(false);
         spriteRenderer.sprite = dialogues[currentPage].page;
@@ -59,7 +60,7 @@ public class HowToPlay : MonoBehaviour
 
     public void PrevPage(){
         currentPage--;
-        if(currentPage < 0){
+        if(currentPage <= 0){
             currentPage = 0;
             backButton.SetActive(false);
             return;

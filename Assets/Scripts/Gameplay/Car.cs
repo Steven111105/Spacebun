@@ -27,6 +27,16 @@ public class Car : MonoBehaviour
         hasAttacked = false;
         audioSource = GetComponent<AudioSource>();
     }
+    public void Pause(){
+        audioSource.Pause();
+    }
+    public void Unpause(){
+        audioSource.UnPause();
+    }
+    public void GameOver(){
+        audioSource.Stop();
+        Destroy(gameObject);
+    }
     public void SetCar(){
         hasSwitchedDirection = true;
         if(carType == 0)

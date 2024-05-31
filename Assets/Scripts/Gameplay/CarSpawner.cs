@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
+    public UIManager uiManager;
     public bool[] blockedPath = new bool [4];
     public GameObject carPrefab;
     public UpgradesManager upgradesManager;
@@ -63,6 +64,9 @@ public class CarSpawner : MonoBehaviour
                 spawnedCar.GetComponent<Car>().turnDelay = turnDelay;
                 spawnedCar.GetComponent<Car>().turnDelayWithSpeedBump = turnDelayWithSpeedBump;
                 spawnedCar.GetComponent<Car>().direction = spawns[randomSpawn].direction.normalized;
+                uiManager.pause.AddListener(spawnedCar.GetComponent<Car>().Pause);
+                uiManager.unpause.AddListener(spawnedCar.GetComponent<Car>().Unpause);
+                uiManager.gameOver.AddListener(spawnedCar.GetComponent<Car>().GameOver);
                 spawnedCar.GetComponent<Car>().SetCar();
             }
         }
