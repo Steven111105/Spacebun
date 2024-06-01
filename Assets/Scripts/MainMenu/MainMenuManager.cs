@@ -11,7 +11,8 @@ public class MainMenuManager : MonoBehaviour
     public bool unlockedLvl3;
     public int[] highscore = new int[3];
     public bool hasSeenTutorial;
-    public GameObject maps;
+    public GameObject lvl2Lock;
+    public GameObject lvl3Lock;
 
     private void OnEnable()
     {
@@ -21,18 +22,29 @@ public class MainMenuManager : MonoBehaviour
         highscore[1] = PlayerPrefs.GetInt("HighScore2", 0);
         highscore[2] = PlayerPrefs.GetInt("HighScore3", 0);
         hasSeenTutorial = PlayerPrefs.GetInt("HasSeenTutorial", 0) == 1;
+        lvl2Lock.transform.parent.gameObject.SetActive(true);
+        lvl3Lock.transform.parent.gameObject.SetActive(true);
         if(highscore[0] > 3000){
             unlockedLvl2 = true;
-            maps.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+            lvl2Lock.SetActive(false);
+        }else{
+            Debug.Log("Locking lvl 2");
+            lvl2Lock.SetActive(true);
         }
         if(highscore[1] > 3000){
             unlockedLvl3 = true;
-            maps.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
+            lvl3Lock.SetActive(false);
+        }else{
+            Debug.Log("Locking lvl 3");
+            lvl3Lock.SetActive(true);
         }
+        lvl2Lock.transform.parent.gameObject.SetActive(false);
+        lvl3Lock.transform.parent.gameObject.SetActive(false);
         highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
     }
     public void LevelSelect(){
+        highscoreText.text = "Skor Tertinggi: " + highscore[mainMenuAnim.GetInteger("Level")];
         if(!hasSeenTutorial){
             hasSeenTutorial = true;
             gameObject.GetComponent<HowToPlay>().StartPages(true);

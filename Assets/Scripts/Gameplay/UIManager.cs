@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     public void AddScore(int addedScore){
         score += addedScore;
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
 
     }
     public void AddCarrot(int addedCarrot){

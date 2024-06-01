@@ -518,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &88188661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3564,7 +3564,8 @@ MonoBehaviour:
   unlockedLvl3: 0
   highscore: 64000000c80000002c010000
   hasSeenTutorial: 0
-  maps: {fileID: 0}
+  lvl2Lock: {fileID: 998526761}
+  lvl3Lock: {fileID: 821520262}
 --- !u!114 &429945902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5674,7 +5675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &821520263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5862,7 +5863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &904343300
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6234,7 +6235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &998526762
 RectTransform:
   m_ObjectHideFlags: 0
