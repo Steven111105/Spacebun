@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 146244987}
   - component: {fileID: 146244986}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: FullscreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1894,7 +1894,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 429945901}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: LevelSelect
+        m_MethodName: ResetSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2775,7 +2775,7 @@ GameObject:
   - component: {fileID: 382816326}
   - component: {fileID: 382816327}
   m_Layer: 0
-  m_Name: Toggle
+  m_Name: FullScreenToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 47.43, y: 69.97, z: 70.79, w: 54.08}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3563,6 +3563,7 @@ MonoBehaviour:
   unlockedLvl2: 0
   unlockedLvl3: 0
   highscore: 64000000c80000002c010000
+  hasSeenTutorial: 0
   maps: {fileID: 0}
 --- !u!114 &429945902
 MonoBehaviour:
@@ -4980,7 +4981,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 137.01, y: 119.97, z: 100.1, w: 109.01}
+  m_RaycastPadding: {x: 96.96, y: 119.97, z: 100.1, w: 109.01}
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5016,7 +5017,7 @@ GameObject:
   - component: {fileID: 697924456}
   - component: {fileID: 697924455}
   m_Layer: 5
-  m_Name: Play
+  m_Name: HapusData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7872,7 +7873,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 151.03, y: 116.3, z: 126.23, w: 101.93}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7990,7 +7991,7 @@ GameObject:
   - component: {fileID: 1434237271}
   - component: {fileID: 1434237272}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8093,7 +8094,7 @@ GameObject:
   - component: {fileID: 1445622255}
   - component: {fileID: 1445622254}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: ResolutionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8138,9 +8139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Resolution
-
-'
+  m_text: Resolusi
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -8802,7 +8801,7 @@ GameObject:
   - component: {fileID: 1735147548}
   - component: {fileID: 1735147547}
   m_Layer: 0
-  m_Name: Text (TMP) (3)
+  m_Name: SettingsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9480,7 +9479,7 @@ GameObject:
   - component: {fileID: 1844695757}
   - component: {fileID: 1844695756}
   m_Layer: 0
-  m_Name: Text (TMP) (2)
+  m_Name: VolumeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

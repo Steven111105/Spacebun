@@ -33,7 +33,7 @@ public class UpgradesManager : MonoBehaviour
         
         for (int i = 0; i < 4; i++){
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
-                Debug.Log("upgrade" + i + " index" + j);
+                // Debug.Log("upgrade" + i + " index" + j);
                 if(unlockedUpgrades[i,j]){
                     if(upgradeLevelIndex ==0){
                         if(i == 0){

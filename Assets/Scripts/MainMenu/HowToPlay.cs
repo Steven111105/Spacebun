@@ -36,6 +36,7 @@ public class HowToPlay : MonoBehaviour
 
     public void StartPages(){
         PlayerPrefs.SetInt("HasSeenTutorial", 1);
+        GetComponent<MainMenuManager>().hasSeenTutorial = true;
         tutorialCanvas.SetActive(true);
         human.SetActive(true);
         currentPage = 0;

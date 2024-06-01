@@ -64,7 +64,7 @@ public class Settings : MonoBehaviour
     }
 
     
-public void LoadSettings()
+    public void LoadSettings()
     {
         bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         fullscreenToggle.isOn = isFullscreen;

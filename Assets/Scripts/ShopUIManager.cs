@@ -25,7 +25,7 @@ public class ShopUIManager : MonoBehaviour
     public TMP_Text carrotsText;
     int upgradeLevelIndex;
     Color greenLight = new(0.6f, 0.8980393f, 0.8078432f, 1);
-    bool[] hasSeenLvlStory = new bool[3];
+    public bool[] hasSeenLvlStory = new bool[3];
     private void OnEnable()
     {
         // Debug.Log(test.transform.GetSiblingIndex());
@@ -46,13 +46,13 @@ public class ShopUIManager : MonoBehaviour
         RefreshUpgrades();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.R)){
-            Debug.Log("money");
-            PlayerPrefs.SetInt("Carrots", 1000);
-        }
-    }
+    // private void Update()
+    // {
+        // if(Input.GetKeyDown(KeyCode.R)){
+        //     Debug.Log("money");
+        //     PlayerPrefs.SetInt("Carrots", 1000);
+        // }
+    // }
     public void Buy(Transform button){
         int index = button.GetSiblingIndex();
         int upgrade = button.parent.GetSiblingIndex()-1;
@@ -77,7 +77,7 @@ public class ShopUIManager : MonoBehaviour
             int level = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + "Level", 0);
             int cost = upgradeCosts[upgradeLevelIndex,i, level];
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
-                Debug.Log("upgrade" + i + " index" + j);
+                // Debug.Log("upgrade" + i + " index" + j);
                 //upgrade 0 = zebra cross for blind
                 //upgrade 1 = Warning lights
                 //upgrade 2 = speed bump
@@ -145,6 +145,7 @@ public class ShopUIManager : MonoBehaviour
 
     public void PlayButton(){
         if(!hasSeenLvlStory[upgradeLevelIndex]){
+            Debug.Log("Playing Story");
             hasSeenLvlStory[upgradeLevelIndex] = true;
             PlayerPrefs.SetInt("HasSeenLvl" + (upgradeLevelIndex+1) + "Story", 1);
             GetComponent<LevelStory>().StartStory(upgradeLevelIndex);
@@ -154,13 +155,11 @@ public class ShopUIManager : MonoBehaviour
         StartCoroutine(PlayCoroutine());
     }
     IEnumerator PlayCoroutine(){
-        Debug.Log("Play");
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("Play2");
         Play();
     }
 
-    public void Play(){
+    void Play(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(upgradeLevelIndex + 1);
     }
 

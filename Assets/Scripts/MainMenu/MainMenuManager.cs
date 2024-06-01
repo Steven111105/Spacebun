@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
     public bool unlockedLvl2;
     public bool unlockedLvl3;
     public int[] highscore = new int[3];
-    bool hasSeenTutorial;
+    public bool hasSeenTutorial;
     public GameObject maps;
 
     private void OnEnable()
@@ -87,6 +87,10 @@ public class MainMenuManager : MonoBehaviour
     }
     public void ResetSave(){
         PlayerPrefs.DeleteAll();
+        StartCoroutine(ResetSaveDelay());
+    }
+    IEnumerator ResetSaveDelay(){
+        yield return new WaitForSeconds(0.5f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void Back(){
