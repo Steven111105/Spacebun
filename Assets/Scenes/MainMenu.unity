@@ -208,7 +208,7 @@ MonoBehaviour:
       - m_Target: {fileID: 429945904}
         m_TargetAssemblyTypeName: HowToPlay, Assembly-CSharp
         m_MethodName: StartPages
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3513,8 +3513,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1074023110}
   - {fileID: 1876034959}
+  - {fileID: 1074023110}
   - {fileID: 211796305}
   - {fileID: 209832345}
   m_Father: {fileID: 0}

@@ -19,6 +19,7 @@ public class HowToPlay : MonoBehaviour
 
     int currentPage = 0;
     public GameObject backButton;
+    bool fromPlay;
     private void OnEnable()
     {
         tutorialCanvas.SetActive(false);
@@ -34,7 +35,8 @@ public class HowToPlay : MonoBehaviour
         }
     }
 
-    public void StartPages(){
+    public void StartPages(bool isPlay){
+        fromPlay = isPlay;
         PlayerPrefs.SetInt("HasSeenTutorial", 1);
         GetComponent<MainMenuManager>().hasSeenTutorial = true;
         tutorialCanvas.SetActive(true);
@@ -47,11 +49,13 @@ public class HowToPlay : MonoBehaviour
 
     public void NextPage(){
         currentPage++;
-        Debug.Log("Next Page " + currentPage);
+        // Debug.Log("Next Page " + currentPage);
         if(currentPage >= dialogues.Length){
             currentPage = 0;
             tutorialCanvas.SetActive(false);
-            GetComponent<MainMenuManager>().LevelSelect();
+            if(fromPlay){
+                GetComponent<MainMenuManager>().LevelSelect();
+            }
             return;
         }
         backButton.SetActive(true);

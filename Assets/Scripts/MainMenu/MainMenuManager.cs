@@ -35,7 +35,7 @@ public class MainMenuManager : MonoBehaviour
     public void LevelSelect(){
         if(!hasSeenTutorial){
             hasSeenTutorial = true;
-            gameObject.GetComponent<HowToPlay>().StartPages();
+            gameObject.GetComponent<HowToPlay>().StartPages(true);
         }else{
             mainMenuAnim.SetTrigger("LevelSelect");
         }
