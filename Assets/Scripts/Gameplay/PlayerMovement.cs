@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
                     helpType = helpTarget.GetComponent<NPC>().npcType;
                     helpTarget.transform.parent = transform;
                     helpTarget.GetComponent<NPC>().gettingHelp = true;
-                    speed = helpTarget.GetComponent<NPC>().speed;
+                    speed = helpTarget.GetComponent<NPC>().carrySpeed;
                     playerSFXManager.PlaySFX(1);
                 }else{
                     helping = false;

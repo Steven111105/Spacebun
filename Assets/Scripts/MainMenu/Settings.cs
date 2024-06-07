@@ -45,6 +45,7 @@ public class Settings : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
         SaveSettings();
+        // LoadSettings();
     }
     public void SetResolution(int resolutionIndex)
     {
@@ -53,6 +54,7 @@ public class Settings : MonoBehaviour
             Resolution selectedResolution = resolutions[resolutionIndex];
             Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
             SaveSettings();
+            // LoadSettings();
         }
     }
     public void SetVolume(float volume)

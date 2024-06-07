@@ -1589,8 +1589,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -423114281
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &216683015
 GameObject:
@@ -2328,7 +2328,7 @@ GameObject:
   - component: {fileID: 340389381}
   - component: {fileID: 340389380}
   - component: {fileID: 340389379}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ResolutionDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2406,16 +2406,22 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1902086096}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetResolution
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &340389380
 MonoBehaviour:
@@ -2847,7 +2853,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1902086096}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetFullscreen
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &402410720
 GameObject:
@@ -2937,7 +2955,7 @@ GameObject:
   - component: {fileID: 402973536}
   - component: {fileID: 402973535}
   - component: {fileID: 402973534}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3499,7 +3517,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &429945899
 RectTransform:
@@ -3698,37 +3716,17 @@ MonoBehaviour:
   - pose: HumanExcited
     page: {fileID: 21300000, guid: fe0b14864a8bcd2488f7f6f92a5d1c33, type: 3}
   - pose: HumanDefault
+    page: {fileID: 21300000, guid: 7b1a291ecc6e4744cb451ff46ae9dead, type: 3}
+  - pose: HumanExcited
     page: {fileID: 21300000, guid: ebf761d93f6a15c4c8e1dd2b944a3533, type: 3}
   - pose: HumanDefault
     page: {fileID: 21300000, guid: 88557202e87b1ca46acb4446bd519e9d, type: 3}
   - pose: HumanWorried
     page: {fileID: 21300000, guid: ab1b3b2cdd8f7714b9b6864c52cb61f6, type: 3}
-  - pose: HumanExcited
+  - pose: HumanDefault
     page: {fileID: 21300000, guid: 5eb8c518769106b49b81d9a2eba491d0, type: 3}
   - pose: HumanExcited
     page: {fileID: 21300000, guid: 33e1cdceb373d4d468cc9c4279fe9977, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 743ff219e78ab4d498f4e4e3d0008f5b, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 87385642a86859d439bc96f24d2b7c08, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 362b393ea39154b45bc9847238d40759, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 2bc36a2627aa1cd4aa701e0e30eac8bc, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 478a726190bd53141bd59c7a219ee0f4, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 65365f696d896ac46932614f3ddcf52c, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 2728b4aa326f40d48b2148e060acdac1, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: b5927cef7dd9b2d4494a0c5ec2077dbc, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: d846b618d5b84eb4d9ff6f15cf689fa4, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 27783e3168680c14aae97641b3d82bae, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: bbc26e79773819c41839786efeb99dc3, type: 3}
   - pose: HumanDefault
     page: {fileID: 21300000, guid: 1eb1200f3c8743846bee868d92bc9df5, type: 3}
   - pose: HumanDefault
@@ -3736,11 +3734,17 @@ MonoBehaviour:
   - pose: HumanDefault
     page: {fileID: 21300000, guid: b57827b3c74a357479ac042584e78c1a, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: e5827f7b631f63a4d819818f26c2873d, type: 3}
+    page: {fileID: 21300000, guid: b5927cef7dd9b2d4494a0c5ec2077dbc, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 21300000, guid: 2728b4aa326f40d48b2148e060acdac1, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 21300000, guid: d846b618d5b84eb4d9ff6f15cf689fa4, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 21300000, guid: 27783e3168680c14aae97641b3d82bae, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 21300000, guid: bbc26e79773819c41839786efeb99dc3, type: 3}
   - pose: HumanExcited
     page: {fileID: 21300000, guid: 5b752fa146b8f13449027e60795a6c90, type: 3}
-  - pose: HumanExcited
-    page: {fileID: 21300000, guid: ca6e252b77535e0499d7dd52ae53a6ec, type: 3}
   human: {fileID: 1018969687}
   tutorialCanvas: {fileID: 209832344}
   dialoguePanel: {fileID: 1222971742}
@@ -3841,7 +3845,7 @@ GameObject:
   - component: {fileID: 463363791}
   - component: {fileID: 463363790}
   - component: {fileID: 463363789}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4434,7 +4438,7 @@ GameObject:
   - component: {fileID: 599665027}
   - component: {fileID: 599665029}
   - component: {fileID: 599665028}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5233,7 +5237,7 @@ GameObject:
   - component: {fileID: 736683556}
   - component: {fileID: 736683558}
   - component: {fileID: 736683557}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5279,7 +5283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option A
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -5932,7 +5936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913733976}
   - component: {fileID: 913733977}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8615,7 +8619,7 @@ GameObject:
   - component: {fileID: 1601641589}
   - component: {fileID: 1601641591}
   - component: {fileID: 1601641590}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8763,7 +8767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1683403811}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8933,7 +8937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743420785}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9320,7 +9324,7 @@ GameObject:
   - component: {fileID: 1799548306}
   - component: {fileID: 1799548308}
   - component: {fileID: 1799548307}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9615,7 +9619,7 @@ GameObject:
   - component: {fileID: 1863644177}
   - component: {fileID: 1863644179}
   - component: {fileID: 1863644178}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9788,7 +9792,7 @@ GameObject:
   - component: {fileID: 1902086095}
   - component: {fileID: 1902086094}
   - component: {fileID: 1902086096}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10167,7 +10171,7 @@ GameObject:
   - component: {fileID: 2051975917}
   - component: {fileID: 2051975919}
   - component: {fileID: 2051975918}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10641,8 +10645,9 @@ GameObject:
   - component: {fileID: 2138560661}
   - component: {fileID: 2138560664}
   - component: {fileID: 2138560663}
+  - component: {fileID: 2138560665}
   - component: {fileID: 2138560662}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10738,6 +10743,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138560660}
   m_CullTransparentMesh: 1
+--- !u!223 &2138560665
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138560660}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 2023134361
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

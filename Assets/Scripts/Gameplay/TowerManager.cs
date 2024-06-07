@@ -28,7 +28,7 @@ public class TowerManager : MonoBehaviour
                     }
                 }else{
                     redLightTimer[i]--;
-                    if(redLightTimer[i] <= 0){
+                    if(redLightTimer[i] < 0){
                         redLightTimer[i] = 0;
                         redLightDirection = -1;
                         activatedTower = -1;
@@ -37,14 +37,14 @@ public class TowerManager : MonoBehaviour
                     
                 }
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.25f);
             UpdateRedLines();
         }
     }
 
     public void Block(int index){
         if(activatedTower == -1){
-            Debug.Log("activated " + activatedTower + " index " + index);
+            // Debug.Log("activated " + activatedTower + " index " + index);
             // Block the path
             activatedTower = index;
             redLightDirection = index;  

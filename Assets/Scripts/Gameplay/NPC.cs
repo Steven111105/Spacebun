@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     public int npcType;
     public Vector2 direction;
     public float speed;
+    public float carrySpeed;
     public bool canDash;
     Rigidbody2D rb;
     bool stopping = false;
@@ -40,20 +41,21 @@ public class NPC : MonoBehaviour
         //blind = speed normal, no dash
         if (npcType == 0)
         {
-            speed = 2;
+            carrySpeed = speed = 2;
             canDash = false;
         }
         else if (npcType == 1)
         {
-            speed = 3;
+            carrySpeed = speed = 3;
             canDash = true;
         }else if (npcType == 2)
         {
-            speed = 1;
+            carrySpeed = speed = 1;
             canDash = false;
         }else if (npcType == 3)
         {
-            speed = 1.5f;
+            speed = 1f;
+            carrySpeed = 2f;
             canDash = false;
         }
     }

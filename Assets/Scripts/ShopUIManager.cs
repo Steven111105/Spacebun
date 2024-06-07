@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ public class ShopUIManager : MonoBehaviour
     public GameObject[] upgradesGO = new GameObject[5];
     readonly int[,,] upgradeCosts = new int[,,]{
         {
-            //zebra                       //warning lights         //speed bump            //bubble
+            //zebra                  //warning lights      //speed bump            //bubble
             {5,10,15,25,0,0,0,0,0}, {60,0,0,0,0,0,0,0,0}, {15,25,40,50,0,0,0,0,0}, {15,25,40,50,0,0,0,0,0}
         },
         {
@@ -26,6 +24,7 @@ public class ShopUIManager : MonoBehaviour
     int upgradeLevelIndex;
     Color greenLight = new(0.6f, 0.8980393f, 0.8078432f, 1);
     public bool[] hasSeenLvlStory = new bool[3];
+    
     private void OnEnable()
     {
         // Debug.Log(test.transform.GetSiblingIndex());
@@ -46,13 +45,13 @@ public class ShopUIManager : MonoBehaviour
         RefreshUpgrades();
     }
 
-    // private void Update()
-    // {
-        // if(Input.GetKeyDown(KeyCode.R)){
-        //     Debug.Log("money");
-        //     PlayerPrefs.SetInt("Carrots", 1000);
-        // }
-    // }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L)){
+            Debug.Log("money");
+            PlayerPrefs.SetInt("Carrots", 1000);
+        }
+    }
     public void Buy(Transform button){
         int index = button.GetSiblingIndex();
         int upgrade = button.parent.GetSiblingIndex()-1;
@@ -157,6 +156,42 @@ public class ShopUIManager : MonoBehaviour
     IEnumerator PlayCoroutine(){
         yield return new WaitForSeconds(0.5f);
         Play();
+    }
+
+    public void ShopHover(Transform button){
+        int index = button.GetSiblingIndex();
+        int upgrade = button.parent.GetSiblingIndex()-1;
+        if(upgrade == 1){
+            for(int k = 0; k < 5; k++){
+                upgradesGO[upgrade].transform.GetChild(index).GetChild(k).GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }else if(upgrade == 3){
+            upgradesGO[upgrade].transform.GetChild(index*2).GetComponent<SpriteRenderer>().color = Color.white;
+            upgradesGO[upgrade].transform.GetChild(index*2+1).GetComponent<SpriteRenderer>().color = Color.white;
+            for(int k = 0; k < 8; k++){
+                upgradesGO[upgrade+1].transform.GetChild(index).transform.GetChild(k).GetComponent<SpriteRenderer>().color = greenLight;
+            }
+        }else{
+            upgradesGO[upgrade].transform.GetChild(index).GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    public void ShopHoverLeave(Transform button){
+        int index = button.GetSiblingIndex();
+        int upgrade = button.parent.GetSiblingIndex()-1;
+        if(upgrade == 1){
+            for(int k = 0; k < 5; k++){
+                upgradesGO[upgrade].transform.GetChild(index).GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+        }else if(upgrade == 3){
+            upgradesGO[upgrade].transform.GetChild(index*2).GetComponent<SpriteRenderer>().color = Color.gray;
+            upgradesGO[upgrade].transform.GetChild(index*2+1).GetComponent<SpriteRenderer>().color = Color.gray;
+            for(int k = 0; k < 8; k++){
+                upgradesGO[upgrade+1].transform.GetChild(index).transform.GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+        }else{
+            upgradesGO[upgrade].transform.GetChild(index).GetComponent<SpriteRenderer>().color = Color.gray;
+        }
     }
 
     void Play(){

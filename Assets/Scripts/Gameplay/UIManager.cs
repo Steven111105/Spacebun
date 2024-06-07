@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
     
     private void OnEnable()
     {
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1 && PlayerPrefs.GetInt("FirstTimeShop", 0) == 0)
+        {
+            PlayerPrefs.SetInt("FirstTimeShop", 1);
+        }
         Time.timeScale = 1;
         //carrot get from the save
         carrots = PlayerPrefs.GetInt("Carrots", 0);

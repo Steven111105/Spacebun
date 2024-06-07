@@ -46,10 +46,10 @@ public class CarSpawner : MonoBehaviour
                 randomSpawn = UnityEngine.Random.Range(0, 4);
             }
                 
-            Debug.Log("Random Spawn: " + randomSpawn);
+            // Debug.Log("Random Spawn: " + randomSpawn);
             if(!blockedPath[randomSpawn]){
                 GameObject spawnedCar = Instantiate(carPrefab, spawns[randomSpawn].spawnPoint.transform.position, Quaternion.identity);
-                Debug.Log("Spawning Car");
+                // Debug.Log("Spawning Car");
                 
                 int randomType = UnityEngine.Random.Range(0, 3);
                 spawnedCar.GetComponent<Car>().carType = randomType;

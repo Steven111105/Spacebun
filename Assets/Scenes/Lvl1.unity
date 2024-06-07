@@ -430,7 +430,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 211399231a1d9944b957900fae3156a1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.16
+  m_Volume: 0.22
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16355,6 +16355,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSprite: {fileID: 0}
   defaultSprite: {fileID: 21300000, guid: 4428c41fc90cddf45be350f45aca1476, type: 3}
+--- !u!1 &1907819929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1907819931}
+  m_Layer: 0
+  m_Name: ShopTutorialScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1907819931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907819929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5947932, y: -1.8005011, z: -0.06721808}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911753692
 GameObject:
   m_ObjectHideFlags: 0
@@ -17984,3 +18015,4 @@ SceneRoots:
   - {fileID: 677004163}
   - {fileID: 376686227}
   - {fileID: 288503954}
+  - {fileID: 1907819931}
