@@ -8,35 +8,56 @@ public class SettingsManager : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     public Slider volumeSlider;
-
-    private Resolution[] resolutions;
-    private List<Resolution> uniqueResolutions;
+    private Resolution[] supportedResolutions = {
+        new Resolution { width = 640, height = 360 },
+        new Resolution { width = 854, height = 480 },
+        new Resolution { width = 960, height = 540 },
+        new Resolution { width = 1024, height = 576 },
+        new Resolution { width = 1280, height = 720 },
+        new Resolution { width = 1366, height = 768 },
+        new Resolution { width = 1600, height = 900 },
+        new Resolution { width = 1920, height = 1080 },
+        new Resolution { width = 2560, height = 1440 },
+        new Resolution { width = 3200, height = 1800 },
+        new Resolution { width = 3840, height = 2160 },
+    };
+    Resolution[] nativeResolutions;
+    List<Resolution> finalResolutions;
 
     void Start()
     {
-        // Initialize resolution dropdown
-        resolutions = Screen.resolutions;
-        uniqueResolutions = new List<Resolution>();
-        HashSet<string> uniqueResolutionStrings = new HashSet<string>();
-
+        nativeResolutions = Screen.resolutions;
+        finalResolutions = new List<Resolution>();
+        // for(int i = 0; i < nativeResolutions.Length; i++)
+        // {
+        //     Debug.Log(nativeResolutions[i].width + " x " + nativeResolutions[i].height);
+        // }
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < nativeResolutions.Length; i++)
         {
-            string resolutionString = resolutions[i].width + " x " + resolutions[i].height;
-            if (!uniqueResolutionStrings.Contains(resolutionString))
+            for (int j = 0; j < supportedResolutions.Length; j++)
             {
-                uniqueResolutionStrings.Add(resolutionString);
-                uniqueResolutions.Add(resolutions[i]);
-                options.Add(resolutionString);
-
-                if (resolutions[i].width == Screen.currentResolution.width &&
-                    resolutions[i].height == Screen.currentResolution.height)
+                if (nativeResolutions[i].width == supportedResolutions[j].width && nativeResolutions[i].height == supportedResolutions[j].height)
                 {
-                    currentResolutionIndex = uniqueResolutions.Count - 1;
+                    if(!finalResolutions.Contains(supportedResolutions[j]))
+                    {
+                        string resolutionString = supportedResolutions[j].width + " x " + supportedResolutions[j].height;
+                        finalResolutions.Add(supportedResolutions[j]);
+                        options.Add(resolutionString);
+
+                        if (supportedResolutions[j].width == Screen.currentResolution.width && supportedResolutions[j].height == Screen.currentResolution.height)
+                        {
+                            currentResolutionIndex = options.Count - 1;
+                        }
+                    }
                 }
             }
+        }
+        for(int i = 0; i < finalResolutions.Count; i++)
+        {
+            Debug.Log(finalResolutions[i].width + " x " + finalResolutions[i].height);
         }
 
         resolutionDropdown.ClearOptions();
@@ -51,7 +72,8 @@ public class SettingsManager : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = uniqueResolutions[resolutionIndex];
+        Resolution resolution = finalResolutions[resolutionIndex];
+        Debug.Log("Setting resolution to " + resolution.width + " x " + resolution.height);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
         // Save resolution setting
@@ -89,9 +111,9 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            resolutionDropdown.value = resolutions.Length - 1;
+            resolutionDropdown.value = finalResolutions.Count - 1;
             resolutionDropdown.RefreshShownValue();
-            SetResolution(resolutions.Length - 1);
+            SetResolution(finalResolutions.Count - 1);
         }
 
         // Load fullscreen setting
