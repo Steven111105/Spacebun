@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
         {
             GameOver();
         }
-        //
 
         if(Input.GetKeyDown(KeyCode.Escape)){
             Pause();

@@ -9966,7 +9966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1185850522
 Transform:
   m_ObjectHideFlags: 0
@@ -11984,6 +11984,7 @@ MonoBehaviour:
   helpTarget: {fileID: 0}
   helpType: 0
   lastDirection: {x: 0, y: 0}
+  iframe: 0
 --- !u!212 &1385850977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18014,5 +18015,5 @@ SceneRoots:
   - {fileID: 42213294}
   - {fileID: 677004163}
   - {fileID: 376686227}
-  - {fileID: 288503954}
   - {fileID: 1907819931}
+  - {fileID: 288503954}

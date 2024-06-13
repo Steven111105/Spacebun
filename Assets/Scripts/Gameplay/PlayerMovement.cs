@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Vector2 lastDirection;
     Vector2 adjustedDirection;
-    // Start is called before the first frame update
+    public bool iframe;
     private void OnEnable(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -164,11 +164,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Hit(){
-        playerSFXManager.PlaySFX(2);
-        StartCoroutine(HitRoutine());
-        if(helping){
-            helpTarget.GetComponent<NPC>().Hit();
+        if(!iframe){
+            StartCoroutine(InvisFrame());
+            playerSFXManager.PlaySFX(2);
+            StartCoroutine(HitRoutine());
+            if(helping){
+                helpTarget.GetComponent<NPC>().Hit();
+            }
         }
+    }
+
+    IEnumerator InvisFrame(){
+        iframe = true;
+        yield return new WaitForSeconds(2f);
+        iframe = false;
     }
 
     IEnumerator HitRoutine(){

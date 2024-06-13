@@ -17,14 +17,12 @@ public class Car : MonoBehaviour
     Rigidbody2D rb;
     public float turnDelay;
     public float turnDelayWithSpeedBump;
-    bool hasAttacked;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        hasAttacked = false;
         audioSource = GetComponent<AudioSource>();
     }
     public void Pause(){
@@ -112,16 +110,15 @@ public class Car : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("NPC"))
         {
-            if(!hasAttacked){
+            PlayerMovement playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            if(!playerMovement.iframe){
                 if(other.gameObject.CompareTag("NPC")){
                     if(other.transform.parent == null){
                         GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
-                        hasAttacked = true; 
                         GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
                     }
                 }else{
                     GameObject.Find("Canvas").GetComponent<UIManager>().MinusHealth();
-                    hasAttacked = true; 
                     // Debug.Log("Player Hit");
                     GameObject.Find("Player").GetComponent<PlayerMovement>().Hit();
                 }
