@@ -19,7 +19,6 @@ public class WarningLight : MonoBehaviour
     }
     
     IEnumerator BlinkRoutine(int type){
-        Debug.Log("Blinking");
         targetSprite = transform.GetComponentInParent<LightManager>().sprites[type];
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         for(int i = 0; i < 5; i++){

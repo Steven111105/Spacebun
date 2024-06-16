@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         speed = defaultSpeed;
         defaultScale = transform.localScale;
         helpType = 4;
+        lastDirection = new Vector2(-1, -1);
     }
 
     // Update is called once per frame
@@ -78,8 +81,43 @@ public class PlayerMovement : MonoBehaviour
             }else if(lastDirection.x < 0 && lastDirection.y < 0){
                 //bottom left
                 directionString = "IdleDownLeft";
+            }
+        }else{
+            //only one button is pressed
+            if(Mathf.Abs(movement.x) > 0.1f){
+                //horizontal is pressed, vertical is not
+                String temp;
+                if(lastDirection.y > 0){
+                    //up
+                    temp = "Up";
+                }else{
+                    //down
+                    temp = "Down";
+                }
+                if(movement.x > 0){
+                    //right
+                    directionString = temp + "Right";
+                }else{
+                    //left
+                    directionString = temp + "Left";
+                }
             }else{
-                directionString = "IdleDownLeft";
+                //vertical is pressed, horizontal is not
+                String temp;
+                if(lastDirection.x > 0){
+                    //up
+                    temp = "Right";
+                }else{
+                    //down
+                    temp = "Left";
+                }
+                if(movement.y > 0){
+                    //up
+                    directionString = "Up" + temp;
+                }else{
+                    //down
+                    directionString = "Down" + temp;
+                }
             }
         }
         if(!helping){

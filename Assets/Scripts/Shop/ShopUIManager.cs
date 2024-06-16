@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopUIManager : MonoBehaviour
@@ -59,9 +60,12 @@ public class ShopUIManager : MonoBehaviour
         if (PlayerPrefs.GetInt("Carrots") >= upgradeCosts[upgradeLevelIndex,upgrade, level])
         {
             GetComponent<ShopSFXManager>().BuySFX();
+            //minus carrot
             PlayerPrefs.SetInt("Carrots", PlayerPrefs.GetInt("Carrots") - upgradeCosts[upgradeLevelIndex,upgrade, level]);
+            //upgrade levels ++
             PlayerPrefs.SetInt("Upgrade" + upgradeLevelIndex + upgrade + "Level", level + 1);
             Debug.Log("Upgrade" + upgradeLevelIndex + upgrade + index);
+            //upgrade bool/int
             PlayerPrefs.SetInt("Upgrade" + upgradeLevelIndex + upgrade + index, 1);
             carrotsText.text = PlayerPrefs.GetInt("Carrots", 0).ToString();
             RefreshUpgrades();
@@ -71,73 +75,73 @@ public class ShopUIManager : MonoBehaviour
     }
 
     void RefreshUpgrades(){
+        RefreshZebra();
+        RefreshPolice();
+        RefreshSpeedBump();
+        RefreshTower();
+        RefreshCosts();
+    }
+
+    void RefreshZebra(){
+        for(int i = 0; i < upgradesLength[upgradeLevelIndex,0]; i++){
+            bool unlocked = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + 0 + i, 0) == 1? true : false;
+            Color color = unlocked? Color.white : Color.gray;
+            upgradesGO[0].transform.GetChild(i).GetComponent<SpriteRenderer>().color = color;
+            if(upgradesGO[0].transform.GetChild(i).gameObject.activeSelf){
+                transform.GetChild(1).GetChild(i).gameObject.SetActive(!unlocked);
+            }else{
+                transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+    void RefreshPolice(){
+        bool unlocked = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + 1 + 0, 0) == 1? true : false;
+        Color color = unlocked? Color.white : Color.gray;
+        for(int i = 0; i < 5; i++){
+            upgradesGO[1].transform.GetChild(0).GetChild(i).GetComponent<SpriteRenderer>().color = color;
+        }
+        transform.GetChild(2).GetChild(0).gameObject.SetActive(!unlocked);
+    }
+    void RefreshSpeedBump(){
+        for(int i = 0; i < upgradesLength[upgradeLevelIndex,2]; i++){
+            bool unlocked = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + 2 + i, 0) == 1? true : false;
+            Color color = unlocked? Color.white : Color.gray;
+            for(int j = 0; j < 3; j++){
+                for(int k = 0; k < 3; k++){
+                    upgradesGO[2].transform.GetChild(i).GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = color;
+                }
+            }
+            if(upgradesGO[2].transform.GetChild(i).gameObject.activeSelf){
+                transform.GetChild(3).GetChild(i).gameObject.SetActive(!unlocked);
+            }else{
+                transform.GetChild(3).GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+    void RefreshTower(){
+        for(int i = 0; i < upgradesLength[upgradeLevelIndex,3]; i++){
+            bool unlocked = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + 3 + i, 0) == 1? true : false;
+            Color color = unlocked? Color.white : Color.gray;
+            Color lightColor = unlocked? greenLight : Color.gray;
+            upgradesGO[3].transform.GetChild(i*2).GetComponent<SpriteRenderer>().color = color;
+            upgradesGO[3].transform.GetChild(i*2+1).GetComponent<SpriteRenderer>().color = color;
+            for(int j = 0; j < 8; j++){
+                upgradesGO[4].transform.GetChild(i).transform.GetChild(j).GetComponent<SpriteRenderer>().color = lightColor;
+            }
+            if(upgradesGO[3].transform.GetChild(i*2).gameObject.activeSelf){
+                transform.GetChild(4).GetChild(i).gameObject.SetActive(!unlocked);
+            }else{
+                transform.GetChild(4).GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+    void RefreshCosts(){
         for (int i = 0; i < 4; i++)
         {
             int level = PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + "Level", 0);
             int cost = upgradeCosts[upgradeLevelIndex,i, level];
             for(int j = 0; j < upgradesLength[upgradeLevelIndex,i]; j++){
-                // Debug.Log("upgrade" + i + " index" + j);
-                //upgrade 0 = zebra cross for blind
-                //upgrade 1 = Warning lights
-                //upgrade 2 = speed bump
-                //upgrade 3 = bubble thing
-                if(PlayerPrefs.GetInt("Upgrade" + upgradeLevelIndex + i + j, 0) == 1){
-                    if(upgradeLevelIndex == 0){
-                        if(i == 0){
-                            if(j == 2 || j == 3){
-                                continue;
-                            }
-                        }else{
-                            if(j == 1){
-                                continue;
-                            }
-                        }
-                    }
-                    // upgradesGO[i].transform.GetChild(j).gameObject.SetActive(true);
-                    if(i == 1){
-                        for(int k = 0; k < 5; k++){
-                            upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.white;
-                        }
-                    }else if(i == 3){
-                        upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.white;
-                        upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.white;
-                        for(int k = 0; k < 8; k++){
-                            upgradesGO[i+1].transform.GetChild(j).transform.GetChild(k).GetComponent<SpriteRenderer>().color = greenLight;
-                        }
-                    }else{
-                        upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.white;
-                    }
-                    //deactivating button from shop
-                    transform.GetChild(i+1).transform.GetChild(j).gameObject.SetActive(false);
-                }else{
-                    if(upgradeLevelIndex == 0){
-                        if(i == 0){
-                            if(j == 2 || j == 3){
-                                continue;
-                            }
-                        }else{
-                            if(j == 1){
-                                continue;
-                            }
-                        }
-                    }
-                    if(i == 1){
-                        for(int k = 0; k < 5; k++){
-                            upgradesGO[i].transform.GetChild(j).GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
-                        }
-                    }else if(i == 3){
-                        upgradesGO[i].transform.GetChild(j*2).GetComponent<SpriteRenderer>().color = Color.gray;
-                        upgradesGO[i].transform.GetChild(j*2+1).GetComponent<SpriteRenderer>().color = Color.gray;
-                        for(int k = 0; k < 8; k++){
-                            upgradesGO[i+1].transform.GetChild(j).transform.GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
-                        }
-                    }else{
-                        upgradesGO[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    //activating button from shop
-                    transform.GetChild(i+1).transform.GetChild(j).gameObject.SetActive(true);
-                    transform.GetChild(i+1).transform.GetChild(j).GetChild(0).GetComponent<TMP_Text>().text = cost.ToString();
-                }
+                transform.GetChild(i+1).transform.GetChild(j).GetChild(0).GetComponent<TMP_Text>().text = cost.ToString();
             }
         }
     }
@@ -165,6 +169,12 @@ public class ShopUIManager : MonoBehaviour
             for(int k = 0; k < 5; k++){
                 upgradesGO[upgrade].transform.GetChild(index).GetChild(k).GetComponent<SpriteRenderer>().color = Color.white;
             }
+        }else if(upgrade == 2){
+            for(int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    upgradesGO[upgrade].transform.GetChild(index).GetChild(i).GetChild(j).GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
         }else if(upgrade == 3){
             upgradesGO[upgrade].transform.GetChild(index*2).GetComponent<SpriteRenderer>().color = Color.white;
             upgradesGO[upgrade].transform.GetChild(index*2+1).GetComponent<SpriteRenderer>().color = Color.white;
@@ -182,6 +192,12 @@ public class ShopUIManager : MonoBehaviour
         if(upgrade == 1){
             for(int k = 0; k < 5; k++){
                 upgradesGO[upgrade].transform.GetChild(index).GetChild(k).GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+        }else if(upgrade == 2){
+            for(int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    upgradesGO[upgrade].transform.GetChild(index).GetChild(i).GetChild(j).GetComponent<SpriteRenderer>().color = Color.gray;
+                }
             }
         }else if(upgrade == 3){
             upgradesGO[upgrade].transform.GetChild(index*2).GetComponent<SpriteRenderer>().color = Color.gray;
