@@ -26,6 +26,9 @@ public class SettingsManager : MonoBehaviour
 
     void Start()
     {
+    //     if(PlayerPrefs.HasKey("Volume")){
+
+    //     }
         nativeResolutions = Screen.resolutions;
         finalResolutions = new List<Resolution>();
         // for(int i = 0; i < nativeResolutions.Length; i++)
@@ -55,10 +58,10 @@ public class SettingsManager : MonoBehaviour
                 }
             }
         }
-        for(int i = 0; i < finalResolutions.Count; i++)
-        {
-            Debug.Log(finalResolutions[i].width + " x " + finalResolutions[i].height);
-        }
+        // for(int i = 0; i < finalResolutions.Count; i++)
+        // {
+        //     Debug.Log(finalResolutions[i].width + " x " + finalResolutions[i].height);
+        // }
 
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(options);
@@ -73,7 +76,7 @@ public class SettingsManager : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = finalResolutions[resolutionIndex];
-        Debug.Log("Setting resolution to " + resolution.width + " x " + resolution.height);
+        // Debug.Log("Setting resolution to " + resolution.width + " x " + resolution.height);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
         // Save resolution setting
@@ -93,6 +96,7 @@ public class SettingsManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+        Debug.Log("Setting volume to " + volume);
 
         // Save volume setting
         PlayerPrefs.SetFloat("Volume", volume);
@@ -114,30 +118,32 @@ public class SettingsManager : MonoBehaviour
             resolutionDropdown.value = finalResolutions.Count - 1;
             resolutionDropdown.RefreshShownValue();
             SetResolution(finalResolutions.Count - 1);
+            PlayerPrefs.SetInt("ResolutionIndex", finalResolutions.Count - 1);
         }
 
         // Load fullscreen setting
-        if (PlayerPrefs.HasKey("Fullscreen"))
-        {
+        if (PlayerPrefs.HasKey("Fullscreen")){
             bool isFullscreen = PlayerPrefs.GetInt("Fullscreen") == 1;
             fullscreenToggle.isOn = isFullscreen;
             Screen.fullScreen = isFullscreen;
         }
-        else
-        {
+        else{
+            //default
             fullscreenToggle.isOn = Screen.fullScreen;
+            PlayerPrefs.SetInt("Fullscreen", 1);
         }
 
         // Load volume setting
-        if (PlayerPrefs.HasKey("Volume"))
-        {
+        if (PlayerPrefs.HasKey("Volume")){
             float volume = PlayerPrefs.GetFloat("Volume");
             volumeSlider.value = volume;
             AudioListener.volume = volume;
         }
-        else
-        {
+        else{
             volumeSlider.value = AudioListener.volume;
+            PlayerPrefs.SetFloat("Volume", volumeSlider.value);
         }
+
+        PlayerPrefs.Save();
     }
 }

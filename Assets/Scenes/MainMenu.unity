@@ -536,7 +536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
+  m_AnchoredPosition: {x: 1068, y: 75}
   m_SizeDelta: {x: 1454.51, y: 866.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88188662
@@ -3734,9 +3734,9 @@ MonoBehaviour:
   - pose: HumanDefault
     page: {fileID: 21300000, guid: b57827b3c74a357479ac042584e78c1a, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: b5927cef7dd9b2d4494a0c5ec2077dbc, type: 3}
-  - pose: HumanDefault
     page: {fileID: 21300000, guid: 2728b4aa326f40d48b2148e060acdac1, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 21300000, guid: b5927cef7dd9b2d4494a0c5ec2077dbc, type: 3}
   - pose: HumanDefault
     page: {fileID: 21300000, guid: d846b618d5b84eb4d9ff6f15cf689fa4, type: 3}
   - pose: HumanDefault
@@ -5679,7 +5679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &821520263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5885,7 +5885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
+  m_AnchoredPosition: {x: -1068, y: 75}
   m_SizeDelta: {x: 1454.51, y: 866.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904343301
@@ -6239,7 +6239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &998526762
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8074,19 +8074,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1902086096}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1445622252
 GameObject:
   m_ObjectHideFlags: 0
