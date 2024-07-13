@@ -636,7 +636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -3866,39 +3866,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
-  - pose: HumanExcited
-    page: {fileID: 21300000, guid: fe0b14864a8bcd2488f7f6f92a5d1c33, type: 3}
+    page: {fileID: -299669536, guid: d454ece86b0d10a47b163077421e78c2, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 7b1a291ecc6e4744cb451ff46ae9dead, type: 3}
-  - pose: HumanExcited
-    page: {fileID: 21300000, guid: ebf761d93f6a15c4c8e1dd2b944a3533, type: 3}
+    page: {fileID: -188298038, guid: 0906166c8bdb66d4097bcb9ae7867243, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 88557202e87b1ca46acb4446bd519e9d, type: 3}
+    page: {fileID: 2074041941, guid: eece52463f2c71e42a5f1e78110a4590, type: 3}
+  - pose: HumanDefault
+    page: {fileID: 378193679, guid: b9d165dbdd41a9042a7dde8245b1c2e0, type: 3}
   - pose: HumanWorried
-    page: {fileID: 21300000, guid: ab1b3b2cdd8f7714b9b6864c52cb61f6, type: 3}
+    page: {fileID: -1783300813, guid: 0f91e1add2358c74dbd346826c4cd35e, type: 3}
+  - pose: HumanWorried
+    page: {fileID: 1841845514, guid: 3f1ab3dec1ecc0244a620f4b64e1d997, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 5eb8c518769106b49b81d9a2eba491d0, type: 3}
+    page: {fileID: 120859530, guid: 22daaa8935d486e4bb322819de14845d, type: 3}
   - pose: HumanExcited
-    page: {fileID: 21300000, guid: 33e1cdceb373d4d468cc9c4279fe9977, type: 3}
+    page: {fileID: 211468418, guid: a166eb3cbaf39c64794a8ca771e4ccef, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 1eb1200f3c8743846bee868d92bc9df5, type: 3}
+    page: {fileID: 1036767441, guid: d9faf6f523adb3b42b0b559057e9a0bc, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: ad1b81528e48ada46b4a0e9dd554916e, type: 3}
+    page: {fileID: -1493241393, guid: 015cd846cbe3f4a4c873a9ebe1c3adf5, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: b57827b3c74a357479ac042584e78c1a, type: 3}
+    page: {fileID: -71585061, guid: 7c914a46216d63448a5b603789ba2f8a, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 2728b4aa326f40d48b2148e060acdac1, type: 3}
+    page: {fileID: 584769833, guid: 64fd55fa44fca1b49baf1746bb4a9f92, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: b5927cef7dd9b2d4494a0c5ec2077dbc, type: 3}
+    page: {fileID: 1150192255, guid: 470cc752433b9094797998b1c1585f08, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: d846b618d5b84eb4d9ff6f15cf689fa4, type: 3}
+    page: {fileID: 1062561530, guid: 6fbf734545cf32e4aba3da6309ed4b55, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 27783e3168680c14aae97641b3d82bae, type: 3}
+    page: {fileID: 1080202194, guid: 695c7c0086705c344bf69631c817cb13, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: bbc26e79773819c41839786efeb99dc3, type: 3}
+    page: {fileID: 1573790541, guid: ecc0d0361d6657c47bd3d89c406e1e55, type: 3}
   - pose: HumanExcited
-    page: {fileID: 21300000, guid: 5b752fa146b8f13449027e60795a6c90, type: 3}
+    page: {fileID: -645535196, guid: 721308914ea405c42a197c09b3be2746, type: 3}
   human: {fileID: 1018969687}
   tutorialCanvas: {fileID: 209832344}
   dialoguePanel: {fileID: 1222971742}
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Keluar
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -5235,7 +5235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hapus Data
+  m_text: Delete Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -5298,7 +5298,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -10, y: 0, z: -10, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5624,7 +5624,7 @@ Transform:
   m_GameObject: {fileID: 779461472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -9719.999}
+  m_LocalPosition: {x: -1.87, y: -0.31, z: -9719.999}
   m_LocalScale: {x: 1, y: 1, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5671,12 +5671,12 @@ SpriteRenderer:
   m_SortingLayerID: -423114281
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+  m_Sprite: {fileID: -299669536, guid: d454ece86b0d10a47b163077421e78c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 12.82, y: 7.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5739,7 +5739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dapatkan skor 3000 atau lebih pada level sebelumnya
+  m_text: "Score 3000 or more on\nthe previous level to\_unlock"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6224,7 +6224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dapatkan skor 3000 atau lebih pada level sebelumnya
+  m_text: "Score 3000 or more on\nthe previous level to\_unlock"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6470,7 +6470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1018969688
 Transform:
   m_ObjectHideFlags: 0
@@ -6480,7 +6480,7 @@ Transform:
   m_GameObject: {fileID: 1018969687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8, y: -0.6, z: -9719.999}
+  m_LocalPosition: {x: 6.55, y: -0.6, z: -9719.999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 54}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6731,7 +6731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.1002464, y: -3.500279}
+  m_AnchoredPosition: {x: -3.51025, y: -3.500279}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070266828
@@ -7191,7 +7191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pengaturan
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -7833,7 +7833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cara Bermain
+  m_text: How To Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -8309,7 +8309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resolusi
+  m_text: Resolution
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -9016,7 +9016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pengaturan
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
   m_sharedMaterial: {fileID: 4622417683526588784, guid: 3b04f14b73fa8ee4b80aa53f99a912d2, type: 2}
@@ -10216,7 +10216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.030003749, y: -3.500279}
+  m_AnchoredPosition: {x: 0.059999898, y: -3.500279}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2037758584

@@ -1,10 +1,5 @@
 using System;
 using System.Collections;
-using System.Data;
-using System.Threading;
-
-
-//using System.Numerics;
 using UnityEngine;
 
 public class CarSpawner : MonoBehaviour

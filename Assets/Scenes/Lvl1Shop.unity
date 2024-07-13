@@ -1566,7 +1566,7 @@ Transform:
   m_GameObject: {fileID: 103269254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -9719.999}
+  m_LocalPosition: {x: -1.87, y: -0.31, z: -9719.999}
   m_LocalScale: {x: 1, y: 1, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1613,7 +1613,7 @@ SpriteRenderer:
   m_SortingLayerID: -423114281
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+  m_Sprite: {fileID: -299669536, guid: d454ece86b0d10a47b163077421e78c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4588,7 +4588,7 @@ Transform:
   m_GameObject: {fileID: 518323298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8, y: -0.6, z: -9719.999}
+  m_LocalPosition: {x: 6.55, y: -0.6, z: -9719.999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 54}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7334,7 +7334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.029999996, y: -3.5}
+  m_AnchoredPosition: {x: -0.41000003, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687764368
@@ -8013,49 +8013,47 @@ MonoBehaviour:
   - levelName: Level1
     dialogues:
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: e74caffa071c89a48bd7fc8f7686a614, type: 3}
+      page: {fileID: -1681245225, guid: 383b22fb6587eaa40a9c0cc45fd9488a, type: 3}
     - pose: HumanExcited
-      page: {fileID: 21300000, guid: 2c2f214491a5fa8419489211cf78437e, type: 3}
+      page: {fileID: 1226727686, guid: f95939028b6219d4399b9cc0ef983464, type: 3}
   - levelName: Level2
     dialogues:
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: 02ada83a6ad715249865e29a85540b7c, type: 3}
+      page: {fileID: 1807740727, guid: ac81fac5c0cc4264b9cf3635bd206281, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: abbc2decb795dde478cb1c1760ef3ac4, type: 3}
+      page: {fileID: -320603885, guid: d6e26247ed6a4de41a8d88f40e13cbdf, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: 0ce7e7541f2eb00459f219e6f81405d4, type: 3}
+      page: {fileID: -968592802, guid: 843ee5a7a10fcba4c81da9c42d123d0f, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: b4807387b6e468f4d9b11e202bf1d4f7, type: 3}
+      page: {fileID: -1820380877, guid: af897724f5b97b54e81e13081e166633, type: 3}
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: 241d1d1b40068f3438208c91438ac56b, type: 3}
+      page: {fileID: -1454724501, guid: 9f28229fa6f3d004b9d1273ba2b8c8ac, type: 3}
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: d0c3f405bccfa9a4f96d77423c9ab349, type: 3}
+      page: {fileID: -849125283, guid: 9afd51dce55320b4cb81f2272cc45579, type: 3}
     - pose: HumanExcited
-      page: {fileID: 21300000, guid: a0e0dea4097fab74aa3fc8d9b26bede1, type: 3}
+      page: {fileID: -1982290929, guid: 1cefdad01df93174e9469a59c3f6660f, type: 3}
   - levelName: Level3
     dialogues:
     - pose: HumanExcited
-      page: {fileID: 21300000, guid: f17cd866cf598d1428a876c222d79fa3, type: 3}
+      page: {fileID: -1465535638, guid: 93cde8d03fff78a4bb74f4bc8c353c6f, type: 3}
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: 231c406f214eeab4b8505bc2423896ea, type: 3}
+      page: {fileID: 116803585, guid: 93963662e909a0a48ad8ee7338d34bce, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: 2ead58f0c86570f43ab4d8f7be152306, type: 3}
+      page: {fileID: -131607544, guid: 71d3ac3bc0a29b946870fc5fad1535e0, type: 3}
     - pose: HumanWorried
       page: {fileID: 21300000, guid: b4807387b6e468f4d9b11e202bf1d4f7, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: 681ebc64e7fdd904793b2d306666043e, type: 3}
+      page: {fileID: -875238770, guid: c1d95150e0b643a4eaeb874542969bfd, type: 3}
     - pose: HumanWorried
-      page: {fileID: 21300000, guid: 7d6831d333dfb904084342ec287750af, type: 3}
+      page: {fileID: -1607208668, guid: 90dc34550154a4a429c3b69e916af2b9, type: 3}
     - pose: HumanExcited
-      page: {fileID: 21300000, guid: 0c41ddb0cbb48d44ab3024b744bcd44b, type: 3}
+      page: {fileID: 1542613693, guid: cf5523cd81aff0342809a76badf1f4aa, type: 3}
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: 83b8a298db76f584b9b490f6f1e29b87, type: 3}
+      page: {fileID: -1885734764, guid: b65020cd7324706499065bd360a9d9fe, type: 3}
     - pose: HumanDefault
-      page: {fileID: 21300000, guid: 258b94888c7a89d4fa577b569a37cd99, type: 3}
+      page: {fileID: 561466889, guid: 0cfc22261c9031140b58aabc642d337d, type: 3}
     - pose: HumanExcited
-      page: {fileID: 21300000, guid: 2ed95cbd4e061cf4094126f19c747441, type: 3}
-    - pose: HumanExcited
-      page: {fileID: 21300000, guid: e82a1f2751804474798a26f52883b5ef, type: 3}
+      page: {fileID: 1443549249, guid: f8cba23fb90450142b48ce0c055a67c2, type: 3}
   storyCanvas: {fileID: 592714651}
   dialoguePanel: {fileID: 1018795397}
   human: {fileID: 1864252459}
@@ -8074,25 +8072,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   story:
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+    page: {fileID: -239151577, guid: 30c6a129b0159a04a823ac0455a5a67d, type: 3}
   - pose: HumanExcited
-    page: {fileID: 21300000, guid: 6676aabd575d51e48a44557b6ffd87fc, type: 3}
+    page: {fileID: -1772653420, guid: 360aededda20fe447b68afd3a65dcade, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 743ff219e78ab4d498f4e4e3d0008f5b, type: 3}
+    page: {fileID: 2086920681, guid: 5c26b939ab8dc0e4da7fe5e159343703, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 2bc36a2627aa1cd4aa701e0e30eac8bc, type: 3}
+    page: {fileID: 664240216, guid: 945a23a26dad31e43961cf6a73362a27, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 478a726190bd53141bd59c7a219ee0f4, type: 3}
+    page: {fileID: 5989992, guid: a07f09d2c3bbaca4f8d1a3b80cd56f67, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 051a767d0c29b4e40a001659e1fa8686, type: 3}
+    page: {fileID: -817682381, guid: 7e17fd6b04c324b4d8cd60b9b3078051, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 87385642a86859d439bc96f24d2b7c08, type: 3}
+    page: {fileID: 1803103608, guid: 1145d0955fe800044baea84b6fd4330e, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 362b393ea39154b45bc9847238d40759, type: 3}
+    page: {fileID: -1233698174, guid: cf2e4fd15599ef4438e222a15e2cbbc7, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 76d572dbecdf1ac469ec27368819598e, type: 3}
-  - pose: HumanExcited
-    page: {fileID: 21300000, guid: f06a336264fe88a4fb789519af778970, type: 3}
+    page: {fileID: -651611170, guid: ecc78e0f4886e1f44927e8c9d9f8fba0, type: 3}
   storyCanvas: {fileID: 1574499904}
   dialoguePanel: {fileID: 847454861}
   human: {fileID: 818974927}
@@ -8111,21 +8107,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   story:
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+    page: {fileID: -1615277388, guid: 8162d4b4111424242bc761eb32dbb8d2, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 701012a61ab275141b3a6a75d479f8c2, type: 3}
+    page: {fileID: 2086920681, guid: 5c26b939ab8dc0e4da7fe5e159343703, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 2bc36a2627aa1cd4aa701e0e30eac8bc, type: 3}
+    page: {fileID: 664240216, guid: 945a23a26dad31e43961cf6a73362a27, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 478a726190bd53141bd59c7a219ee0f4, type: 3}
+    page: {fileID: 5989992, guid: a07f09d2c3bbaca4f8d1a3b80cd56f67, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 051a767d0c29b4e40a001659e1fa8686, type: 3}
+    page: {fileID: -817682381, guid: 7e17fd6b04c324b4d8cd60b9b3078051, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 87385642a86859d439bc96f24d2b7c08, type: 3}
+    page: {fileID: 1803103608, guid: 1145d0955fe800044baea84b6fd4330e, type: 3}
   - pose: HumanDefault
-    page: {fileID: 21300000, guid: 362b393ea39154b45bc9847238d40759, type: 3}
-  - pose: HumanDefault
-    page: {fileID: 21300000, guid: 41845288187d05b4a90379baada687b7, type: 3}
+    page: {fileID: 668554026, guid: 52da2f236e334854c90952445e791b1f, type: 3}
   storyCanvas: {fileID: 1166031859}
   dialoguePanel: {fileID: 491000275}
   human: {fileID: 518323298}
@@ -9083,7 +9077,7 @@ Transform:
   m_GameObject: {fileID: 818974927}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8, y: -0.6, z: -9719.999}
+  m_LocalPosition: {x: 6.55, y: -0.6, z: -9719.999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 54}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9921,7 +9915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.1000001, y: -3.5}
+  m_AnchoredPosition: {x: -3.5400002, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &890088889
@@ -11865,7 +11859,7 @@ Transform:
   m_GameObject: {fileID: 1068685611}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -9719.999}
+  m_LocalPosition: {x: -1.87, y: -0.31, z: -9719.999}
   m_LocalScale: {x: 1, y: 1, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11912,7 +11906,7 @@ SpriteRenderer:
   m_SortingLayerID: -423114281
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+  m_Sprite: {fileID: -299669536, guid: d454ece86b0d10a47b163077421e78c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16608,7 +16602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.1000001, y: -3.5}
+  m_AnchoredPosition: {x: -3.5400002, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486717376
@@ -16870,7 +16864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.1000001, y: -3.5}
+  m_AnchoredPosition: {x: -3.5400002, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520597187
@@ -17652,7 +17646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.029999996, y: -3.5}
+  m_AnchoredPosition: {x: -0.41, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608403070
@@ -20199,7 +20193,7 @@ Transform:
   m_GameObject: {fileID: 1864252459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8, y: -0.6, z: -9719.999}
+  m_LocalPosition: {x: 6.55, y: -0.6, z: -9719.999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 54}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -21870,7 +21864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.029999996, y: -3.5}
+  m_AnchoredPosition: {x: -0.41000003, y: -3.5}
   m_SizeDelta: {x: 144, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1995820335
@@ -22658,7 +22652,7 @@ Transform:
   m_GameObject: {fileID: 2086190963}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -9719.999}
+  m_LocalPosition: {x: -1.87, y: -0.31, z: -9719.999}
   m_LocalScale: {x: 1, y: 1, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22705,7 +22699,7 @@ SpriteRenderer:
   m_SortingLayerID: -423114281
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 561de91db9b96884084ef85afd94aa4e, type: 3}
+  m_Sprite: {fileID: -299669536, guid: d454ece86b0d10a47b163077421e78c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -106,10 +105,10 @@ public class UIManager : MonoBehaviour
             //save highscore on "Highscore" + sceneIndex
             PlayerPrefs.SetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, score);
         }
-        gameOverPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = "Skor: " + score;
-        gameOverPanel.transform.GetChild(1).GetComponent<TMP_Text>().text = "Skor Tertinggi: " + PlayerPrefs.GetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, 0);
-        gameOverPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = "Tambahan Wortel +" + (carrots - prevCarrots);
-        gameOverPanel.transform.GetChild(3).GetComponent<TMP_Text>().text = "Total Wortel " + carrots;
+        gameOverPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = "Score: " + score;
+        gameOverPanel.transform.GetChild(1).GetComponent<TMP_Text>().text = "High Score: " + PlayerPrefs.GetInt("HighScore" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, 0);
+        gameOverPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = "Gained Carrots +" + (carrots - prevCarrots);
+        gameOverPanel.transform.GetChild(3).GetComponent<TMP_Text>().text = "Total Carrots " + carrots;
         //get scene index
         PlayerPrefs.SetInt("Carrots", carrots);
         gameOverPanel.SetActive(true);
