@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2414,7 +2413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 2146466496}
   blindStop: 0
 --- !u!61 &208022482
@@ -3914,7 +3912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 437932492}
   blindStop: 0
 --- !u!61 &389399404
@@ -5847,7 +5844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 1979840827}
   blindStop: 0
 --- !u!61 &558847438
@@ -6217,7 +6213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 1420903750}
   blindStop: 0
 --- !u!61 &572265615
@@ -9503,7 +9498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 1387445622}
   blindStop: 0
 --- !u!61 &896637062
@@ -12306,7 +12300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1233219898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f02f13a42c76de46b7e6fe8ab90c439, type: 3}
+  m_Script: {fileID: 11500000, guid: c75f376e5eba59a4ba5b2569c94aff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sfx:
@@ -12796,7 +12790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 1812226613}
   blindStop: 0
 --- !u!61 &1284455756
@@ -17215,7 +17208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 2092432255}
   blindStop: 0
 --- !u!61 &1724974492
@@ -18161,7 +18153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af7fb1dcda6c4c40a9676e8cf700cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
   endTrigger: {fileID: 1749767136}
   blindStop: 0
 --- !u!61 &1810862769
@@ -21399,12 +21390,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &2116680907
 GameObject:
   m_ObjectHideFlags: 0

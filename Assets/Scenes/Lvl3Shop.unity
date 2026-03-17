@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1899,7 +1898,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &150629196
@@ -2861,7 +2860,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &210666038
@@ -4081,7 +4080,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &247970209
@@ -5133,7 +5132,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &319511327
@@ -9274,7 +9273,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &621008215
@@ -15481,7 +15480,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1247521540
@@ -15626,8 +15625,6 @@ MonoBehaviour:
       page: {fileID: 116803585, guid: 93963662e909a0a48ad8ee7338d34bce, type: 3}
     - pose: HumanWorried
       page: {fileID: -131607544, guid: 71d3ac3bc0a29b946870fc5fad1535e0, type: 3}
-    - pose: HumanWorried
-      page: {fileID: 21300000, guid: b4807387b6e468f4d9b11e202bf1d4f7, type: 3}
     - pose: HumanWorried
       page: {fileID: -875238770, guid: c1d95150e0b643a4eaeb874542969bfd, type: 3}
     - pose: HumanWorried
@@ -19810,7 +19807,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1650071374
@@ -23745,7 +23742,7 @@ MonoBehaviour:
   m_margin: {x: 7, y: 47, z: 7, w: 47}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2085270863
@@ -23971,12 +23968,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &2125752437
 GameObject:
   m_ObjectHideFlags: 0
